@@ -5,6 +5,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import { useFonts } from 'expo-font';
 import { StyleSheet, Text, View, ImageBackground } from 'react-native';
 import { Image } from 'expo-image';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 // Pages
 import Intro from './src/pages/Section-intro';
@@ -30,6 +31,9 @@ export default function App() {
     <>
       <StatusBar hidden={true} />
         <NavigationContainer>
+        <GestureHandlerRootView>
+
+
           <View style={style.backgroundContainer}>
             
             <Tab.Navigator
@@ -40,13 +44,15 @@ export default function App() {
               tabBarIndicatorStyle: { backgroundColor: '#FFFFFF' }}}
               style={{ flex: 1 }}>
             
-              <Tab.Screen name='Intro'      component={Intro} options={{ tabBarLabel: '', tabBarIcon: () => (<Image source={Logo} style={style.imagen} />), tabBarShowLabel: false}}/>
+              <Tab.Screen name='Intro'      component={Intro} options={{ tabBarIcon: () => (<Image source={Logo} style={style.imagen} />), tabBarShowLabel: false}}/>
               <Tab.Screen name='Comida'     component={Comida} />
               <Tab.Screen name='Comics'     component={Comics} />
               <Tab.Screen name='Contactos'  component={Contactos} />
             
             </Tab.Navigator>
         </View>
+            </GestureHandlerRootView>
+        
       </NavigationContainer>
     </>
   );
@@ -66,7 +72,7 @@ const style = StyleSheet.create({
   imagen: {
     width: 70, // Ajusta el tamaño de la imagen del icono
     height: 70,
-    resizeMode:'contain',
+    contentFit:'contain',
     borderRadius: 50,
   },
   buttonText: {
