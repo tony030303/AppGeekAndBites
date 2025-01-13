@@ -32,7 +32,6 @@ export default function Intro() {
       <Text style={style.bienvenida}>¡Bienvenidos a Geek&Bites!</Text>
       <Animated.Image
         source={require('../assets/01-logo.jpeg')}
-        style={[style.logoImg, { transform: [{ rotate: spin }] }]}
       />
     </View>
   );
