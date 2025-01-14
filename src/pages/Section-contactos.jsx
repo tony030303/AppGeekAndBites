@@ -12,7 +12,7 @@ import Data from '../jsons/indexContent.json';
 import Credito from '../jsons/creditos.json';
 
 
-export default function Intro() {
+export default function Contactos() {
     
 
   return (
