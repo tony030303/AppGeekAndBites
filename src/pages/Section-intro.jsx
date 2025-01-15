@@ -34,7 +34,6 @@ export default function Intro() {
       >
 
       <ScrollView contentContainerStyle={style.scrollContainer}>
-        {/* Condición para asegurarse de que los datos están cargados */}
         {data && data.length > 0 ? (
           data.map((item, index) => (
             <Filimina key={index} imagen={images[item.contenido.img.src]}>
@@ -44,7 +43,6 @@ export default function Intro() {
         ) : (
           <Text>Cargando datos...</Text>
         )}
-        {/* Puedes agregar contenido aquí si lo necesitas */}
       </ScrollView>
       </ImageBackground>
     </>

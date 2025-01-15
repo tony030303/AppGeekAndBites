@@ -5,7 +5,7 @@ const Filimina = ({ children, imagen }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>{children}</Text>
-      <Image source={imagen} style={styles.image} />
+      <Image source={imagen} style={styles.image} loading='lazy' />
     </View>
   );
 };
