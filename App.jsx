@@ -9,6 +9,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import BarraNavegacion from './src/components/BarraNavegacion';
 
 export default function App() {
+  console.log('Eeeel aplauso senores');
   const [fontLoad] = useFonts({
     comic: require('./src/assets/fonts/Rethogen Atomics.otf'),
   });

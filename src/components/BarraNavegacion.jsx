@@ -43,7 +43,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    backgroundColor: 'rgba(35, 31, 32, 0.9)',
+    backgroundColor: 'rgb(0, 0, 0)',
   },
   imagen: {
     width: 70,
