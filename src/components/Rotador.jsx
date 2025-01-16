@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Animated, Easing } from 'react-native';
 
 const logo = require('../assets/01-logo.jpeg');
 
 // TAG
 const RotarView = props => {
-  const rotar = new Animated.Value(0); // Initial value for rotation: 0
+  const rotar =useRef( new Animated.Value(0)).current; // Initial value for rotation: 0
 
   useEffect(() => {
     // Usamos Animated.loop para hacer que la animación sea infinita
@@ -28,13 +28,12 @@ const RotarView = props => {
         )
     ).start(); // Comienza la animación
   }, []);
-
   // Interpolamos el valor de rotación para que sea de 0 a 360 grados
   const rotateInterpolate = rotar.interpolate({
     inputRange: [0, 1],
     outputRange: ['0deg', '90deg'], // Convertimos el valor numérico a grados
   });
-
+  console.log('Realizando rotacion');
   return (
     <Animated.View
       style={{

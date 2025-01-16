@@ -25,7 +25,33 @@ const style = StyleSheet.create({
       width: 250,
       height: 250,
       borderRadius: 125, // Hacer la imagen redonda
-    }
+    },
+
+
+    containerCredito: {
+      flex: 1,
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-around',
+      padding: 10,
+    },
+    itemContainerCredito: {
+      width: '45%', // Dos columnas con espacio entre ellas
+      marginBottom: 20,
+      alignItems: 'center',
+    },
+    imageCredito: {
+      width: 150,
+      height: 150,
+      marginBottom: 5,
+      resizeMode: 'cover',
+      borderRadius: 100
+    },
+    nameCredito: {
+      textAlign: 'center',
+      color: 'white'
+    },
+
   });
   
   export default style;
