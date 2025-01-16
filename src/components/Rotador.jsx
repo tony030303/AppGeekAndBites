@@ -12,16 +12,15 @@ const RotarView = props => {
     Animated.loop(
         Animated.sequence([
 
-            
             Animated.timing(rotar, {
-                toValue: 90, // Final rotation value (360 degrees)
-                duration: 150, // Duration of one complete rotation
+                toValue: 1, // Final rotation value (360 degrees)
+                duration: 750, // Duration of one complete rotation
                 easing: Easing.linear,
                 useNativeDriver: true,
             }),
             Animated.timing(rotar, {
                 toValue: 0, // Final rotation value (360 degrees)
-                duration: 350, // Duration of one complete rotation
+                duration: 750, // Duration of one complete rotation
                 easing: Easing.linear,
                 useNativeDriver: true,
             })
@@ -32,8 +31,8 @@ const RotarView = props => {
 
   // Interpolamos el valor de rotación para que sea de 0 a 360 grados
   const rotateInterpolate = rotar.interpolate({
-    inputRange: [0, 360],
-    outputRange: ['0deg', '360deg'], // Convertimos el valor numérico a grados
+    inputRange: [0, 1],
+    outputRange: ['0deg', '90deg'], // Convertimos el valor numérico a grados
   });
 
   return (
@@ -46,3 +45,5 @@ const RotarView = props => {
     </Animated.View>
   );
 };
+
+export default RotarView;

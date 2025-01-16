@@ -18,9 +18,14 @@ const style = StyleSheet.create({
     },
     text: {
       fontSize: 24,
-      color: 'black', // Asegura que el texto sea visible sobre el fondo
-      fontFamily: 'comic',
+      color: 'white', // Asegura que el texto sea visible sobre el fondo
+      fontWeight: 'bold'
     },
+    img: {
+      width: 250,
+      height: 250,
+      borderRadius: 125, // Hacer la imagen redonda
+    }
   });
   
   export default style;

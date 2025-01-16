@@ -1,77 +1,60 @@
-import React, { useEffect } from 'react';
-import { Animated, View, Image, StyleSheet, Easing, Text } from 'react-native';
+import React, { useRef } from 'react';
+import { Animated, ScrollView, View, Text, StyleSheet } from 'react-native';
 
-const logo = require('../assets/01-logo.jpeg');
+export default function ScrollAnimation() {
+  const scrollY = useRef(new Animated.Value(0)).current;
 
-// TAG
-const RotarView = props => {
-  const rotar = new Animated.Value(0); // Initial value for rotation: 0
-
-  useEffect(() => {
-    // Usamos Animated.loop para hacer que la animación sea infinita
-    Animated.loop(
-        Animated.sequence([
-
-            
-            Animated.timing(rotar, {
-                toValue: 90, // Final rotation value (360 degrees)
-                duration: 500, // Duration of one complete rotation
-                easing: Easing.linear,
-                useNativeDriver: true,
-            }),
-            Animated.timing(rotar, {
-                toValue: 0, // Final rotation value (360 degrees)
-                duration: 500, // Duration of one complete rotation
-                easing: Easing.linear,
-                useNativeDriver: true,
-            })
-        ]
-        )
-    ).start(); // Comienza la animación
-  }, []);
-
-  // Interpolamos el valor de rotación para que sea de 0 a 360 grados
-  const rotateInterpolate = rotar.interpolate({
-    inputRange: [0, 360],
-    outputRange: ['0deg', '360deg'], // Convertimos el valor numérico a grados
+  const headerHeight = scrollY.interpolate({
+    inputRange: [0, 200], // Scroll range
+    outputRange: [100, 50], // Header height changes from 100 to 50
+    extrapolate: 'clamp', // Prevents the output range from exceeding the specified values
   });
 
   return (
-    <Animated.View
-      style={{
-        ...props.style,
-        transform: [{ rotateY: rotateInterpolate }], // Aplicamos la rotación interpolada
-      }}>
-      {props.children}
-    </Animated.View>
-  );
-};
-
-// Componente principal
-export default () => {
-  return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}>
-      <RotarView
-        style={{
-          width: 250,
-          height: 250,
-        }}>
-        <Image source={logo} style={style.img} />
-        <Text>HOLA</Text>
-      </RotarView>
+    <View style={styles.container}>
+      <Animated.View style={[styles.header, { height: headerHeight }]}>
+        <Text style={styles.headerText}>Header</Text>
+      </Animated.View>
+      <Animated.ScrollView
+        contentContainerStyle={styles.scrollContent}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+          { useNativeDriver: false } // If you're animating layout properties, set this to false
+        )}
+        scrollEventThrottle={16} // How often the scroll event will be fired, in milliseconds
+      >
+        {/* Sample content */}
+        {[...Array(10)].map((_, i) => (
+          <View key={i} style={styles.item}>
+            <Text>Item {i + 1}</Text>
+          </View>
+        ))}
+      </Animated.ScrollView>
     </View>
   );
-};
+}
 
-const style = StyleSheet.create({
-  img: {
-    width: 250,
-    height: 250,
-    borderRadius: 125, // Hacer la imagen redonda
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  header: {
+    backgroundColor: 'skyblue',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  headerText: {
+    fontSize: 20,
+    color: 'white',
+  },
+  scrollContent: {
+    paddingTop: 100, // Ensure content doesn't overlap with header
+  },
+  item: {
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
   },
 });

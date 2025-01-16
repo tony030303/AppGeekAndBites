@@ -17,7 +17,7 @@ export default function BarraNavegacion() {
 
   return (
     <Tab.Navigator
-      initialRouteName='BETATESTING'
+      initialRouteName='Intro'
       screenOptions={{
         tabBarStyle: style.container,
         tabBarLabelStyle: style.buttonText,
