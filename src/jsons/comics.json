@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "title": "Comic 1",
+    "year": 2021,
+    "cover": "comic1.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Comic 2",
+    "year": 2022,
+    "cover": "comic2.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Comic 3",
+    "year": 2023,
+    "cover": "comic3.jpg"
+  }
+]
