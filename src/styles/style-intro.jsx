@@ -49,7 +49,8 @@ const style = StyleSheet.create({
     },
     nameCredito: {
       textAlign: 'center',
-      color: 'white'
+      color: 'white',
+      fontWeight: 'bold'
     },
 
   });

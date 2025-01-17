@@ -1,10 +1,9 @@
 // Librerias
-import React, { useEffect, useState } from 'react';
-import { Text, Image, View } from 'react-native';
+import React, { useEffect, useState, useRef } from 'react';
+import { Text, Image, View, Animated } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ImageBackground } from 'expo-image';
 import style from '../styles/style-intro'
-
 // Componentes
 import Filimina from '../components/Filimina';
 import Rotador from '../components/Rotador'
@@ -22,15 +21,17 @@ import Credi from '../jsons/creditos.json';
 export default function Intro() {
   const [data, setData] = useState(null);
   const [credi, setCredi] = useState(null);
-  const [animation, setAni] = useState(false);
+
+  const rotar = useRef( new Animated.Value(0)).current; // Initial value for rotation: 0
+  
 
   useEffect(() => {
     setData(Data);
     setCredi(Credi);
   }, []
-);
+  );
 
-
+console.log('Intro Cargada! 👑');
 return (
   <>
     <ImageBackground
@@ -78,7 +79,7 @@ return (
       
       </View>
     </ScrollView>
-      </ImageBackground>
+    </ImageBackground>
     </>
   );
 }

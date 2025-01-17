@@ -11,3 +11,4 @@ import sthefany from '../assets/sthefy.png';
 export { intro01, intro02, intro03, intro04,
     facundo, albany, antonioCorazonDeLeon, sthefany
 };
+

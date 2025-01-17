@@ -5,7 +5,7 @@ const logo = require('../assets/01-logo.jpeg');
 
 // TAG
 const RotarView = props => {
-  const rotar =useRef( new Animated.Value(0)).current; // Initial value for rotation: 0
+  const rotar = useRef( new Animated.Value(0)).current; // Initial value for rotation: 0
 
   useEffect(() => {
     // Usamos Animated.loop para hacer que la animación sea infinita

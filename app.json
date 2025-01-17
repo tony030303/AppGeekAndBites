@@ -3,6 +3,18 @@
     "name": "gnbb",
     "slug": "gnbb",
     "version": "1.0.0",
-    "newArchEnabled": true
+    "newArchEnabled": true,
+    "icon": "./src/assets/icon.png",
+    "android": {
+      "package": "com.anonymous.gnbb"
+    },
+    "ios": {
+      "bundleIdentifier": "com.anonymous.gnbb"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "61e7fa00-2993-4688-b07b-d7c5229e2f04"
+      }
+    }
   }
 }

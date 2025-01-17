@@ -8,12 +8,13 @@ import Intro from '../pages/Section-intro';
 import Comidas from '../pages/Section-comida';
 import Comics from '../pages/Section-comics';
 import Contactos from '../pages/Section-contactos';
-import Anima from '../pages/animacionTest';
+import Anima from './ScrollAnimation';
 
 const Tab = createMaterialTopTabNavigator();
 
 export default function BarraNavegacion() {
   const Logo = require('../assets/01-logo.jpeg');
+  console.log('Barra de Secciones Funcionando! 🔍');
 
   return (
     <Tab.Navigator
