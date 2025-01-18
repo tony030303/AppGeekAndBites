@@ -8,7 +8,7 @@ import Intro from '../pages/Section-intro';
 import Comidas from '../pages/Section-comida';
 import Comics from '../pages/Section-comics';
 import Contactos from '../pages/Section-contactos';
-import Anima from './ScrollAnimation';
+import Anima from './prueba';
 
 const Tab = createMaterialTopTabNavigator();
 
