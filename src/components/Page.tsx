@@ -8,7 +8,7 @@ import Animated, {
 } from "react-native-reanimated";
 
 interface PageProps {
-  title: string;
+  ruta: any;
   index: number;
   translateX: SharedValue<number>;
 }
@@ -17,7 +17,7 @@ const { height, width } = Dimensions.get("window");
 
 const SIZE = width * 0.95;
 
-const Page: React.FC<PageProps> = ({ index, title, translateX }) => {
+const Page: React.FC<PageProps> = ({ index, ruta, translateX }) => {
   const inputRange = [(index - 1) * width, index * width, (index + 1) * width];
 
   const rStyle = useAnimatedStyle(() => {
@@ -74,13 +74,10 @@ const Page: React.FC<PageProps> = ({ index, title, translateX }) => {
       ]}
     >
       <Animated.View style={[styles.square, rStyle]}>
-        <Animated.Image
-          source={require("../assets/PerkCans/lata.png")}
-          style={[rStyle, styles.image]}
-        />
+        <Animated.Image source={ruta} style={[rStyle, styles.image]} />
       </Animated.View>
       <Animated.View style={[rTextStyle, { position: "absolute" }]}>
-        <Text style={styles.text}>{title}</Text>
+        <Text style={styles.text}>{`Perk_${index + 1}`}</Text>
       </Animated.View>
     </View>
   );
