@@ -1,9 +1,35 @@
 export const imageMap = {
-  "comic1.jpg": require("./comics/comic1.png"), // Cambia ../assets/comics a ./comics
-  "comic2.jpg": require("./comics/comic2.png"),
-  "comic3.jpg": require("./comics/comic3.png"),
-  "comic4.jpg": require("./comics/comic4.png"),
-  "comic5.jpg": require("./comics/comic5.png"),
-  "comic6.jpg": require("./comics/comic6.png"),
-  // Agrega más imágenes según sea necesario
+  // exporta el objeto imageMap que actúa como un mapa de claves y valores.
+  // cada clave es el nombre del archivo de imagen y el valor es el resultado de cargar esa imagen.
+
+  "comic1.png": require("./comics/comic1.png"),
+  "comic2.png": require("./comics/comic2.png"),
+  "comic3.png": require("./comics/comic3.png"),
+  "comic4.png": require("./comics/comic4.png"),
+  "comic5.png": require("./comics/comic5.png"),
+  "comic6.png": require("./comics/comic6.png"),
+  "comic7.png": require("./comics/comic7.png"),
+  "comic8.png": require("./comics/comic8.png"),
+  "comic9.png": require("./comics/comic9.png"),
+  "comic10.png": require("./comics/comic10.png"),
+  "comic11.png": require("./comics/comic11.png"),
+  "comic12.png": require("./comics/comic12.png"),
+  "comic13.png": require("./comics/comic13.png"),
+  "comic14.png": require("./comics/comic14.png"),
+  "comic15.png": require("./comics/comic15.png"),
+  "comic16.png": require("./comics/comic16.png"),
+  "comic17.png": require("./comics/comic17.png"),
+  "comic18.png": require("./comics/comic18.png"),
+  "comic19.png": require("./comics/comic19.png"),
+  "comic20.png": require("./comics/comic20.png"),
+  "comic21.png": require("./comics/comic21.png"),
+  "comic22.png": require("./comics/comic22.png"),
+  "comic23.png": require("./comics/comic23.png"),
+  "comic24.png": require("./comics/comic24.png"),
+  "comic25.png": require("./comics/comic25.png"),
+  "comic26.png": require("./comics/comic26.png"),
+  "comic27.png": require("./comics/comic27.png"),
+  "comic28.png": require("./comics/comic28.png"),
+  "comic29.png": require("./comics/comic29.png"),
+  "comic30.png": require("./comics/comic30.png"),
 };
