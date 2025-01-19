@@ -4,15 +4,16 @@ import Animated, {
   useAnimatedScrollHandler,
   useSharedValue,
 } from "react-native-reanimated";
-import { Page } from "./Page";
+import { Page } from "../components/Page";
 
-const WORDS = ["", "", "", ""];
+import perks from "../jsons/perks"; //importamos el archivo de perks
+
 /*
 const WORDS = ["", "", "", ""];
 */
 //pueden colocarse aca las rutas para cada una de las etiquetas
 
-const RUTAS = ["01-perk.webp", "02-perk.webp", "03-perk.webp", "04-perk.webp"];
+const RUTAS = ["perk_01.png", "perk_02.png", "perk_03.png", "perk_04.png"];
 
 const styles = StyleSheet.create({
   container: {
@@ -37,11 +38,11 @@ const Prueba = () => {
       horizontal
       style={styles.container}
     >
-      {RUTAS.map((title, index) => {
+      {perks.map((lata, index) => {
         return (
           <Page
             key={index.toString()}
-            title={title}
+            ruta={lata.image}
             index={index}
             translateX={translateX}
           />
