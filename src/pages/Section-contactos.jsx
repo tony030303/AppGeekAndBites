@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { Animated, StyleSheet, View, Text } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ImageBackground } from 'expo-image';
-// Componentes
-import Filimina from '../components/Filimina';
+import {ContactList} from '../components/ContactosList.jsx';
+import style from '../styles/style-intro.jsx';
+import styleContactos from '../styles/style-contactos';
 
-const Fondo = require('../assets/neonRoad.gif');
-const Imagen1 = require('../assets/01-index-kids-eating.jpeg')
+// Componentes
+
+
 const wallpaper = require('../assets/wallPaper/NeonRoad-04.gif')
-import Data from '../jsons/indexContent.json';
-import Credito from '../jsons/creditos.json';
+
 
 
 export default function Contactos() {
-    
+   //sección de contactos  
 
   return (
 <>
@@ -23,7 +24,10 @@ export default function Contactos() {
       contentFit="cover"
     >
    <ScrollView contentContainerStyle={style.scrollContainer}>
-
+     <View style={style.sectionContainer}>
+            <Text style={styleContactos.heading}>Contactanos!</Text> 
+            <ContactList />
+      </View>
   
    </ScrollView>
     </ImageBackground>
