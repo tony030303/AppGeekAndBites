@@ -11,8 +11,13 @@
   "dependencies": {
     "@react-navigation/material-top-tabs": "^7.1.0",
     "@react-navigation/native": "^7.0.14",
+    "@types/node": "*",
     "expo": "~52.0.25",
+<<<<<<< HEAD
     "expo-blur": "^14.0.2",
+=======
+    "expo-file-system": "~18.0.7",
+>>>>>>> 34ce3f8 (no hice nada pero me piden commitear jeje)
     "expo-image": "^2.0.4",
     "expo-status-bar": "~2.0.1",
     "react": "18.3.1",
@@ -22,7 +27,9 @@
     "react-native-pager-view": "^6.6.1",
     "react-native-reanimated": "^3.16.7",
     "react-native-safe-area-context": "^5.1.0",
-    "react-native-tab-view": "^4.0.5"
+    "react-native-svg": "^15.11.1",
+    "react-native-tab-view": "^4.0.5",
+    "typescript": "2.7"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
