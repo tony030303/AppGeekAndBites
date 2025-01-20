@@ -1,10 +1,10 @@
-import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
-import Svg, { Defs, ClipPath, Rect, Use } from 'react-native-svg';
+import React from "react";
+import { View, Image, StyleSheet } from "react-native";
+import Svg, { Defs, ClipPath, Rect, Use } from "react-native-svg";
 
 // Gallery
-const mockUp = require('../assets/PerkCans/lata.png');
-const tag = require('../assets/PerkCans/10-perk.webp');
+const mockUp = require("../assets/PerkCans/lata.png");
+const tag = require("../assets/PerkCans/10-perk.webp");
 
 export default function LaTag() {
   return (
@@ -22,10 +22,7 @@ export default function LaTag() {
         {/* Imagen que será recortada por la máscara */}
         <Use href="#mask" x="0" y="0">
           <Image
-            href={mockUp} // Imagen como fondo
-            width="200"
-            height="200"
-            preserveAspectRatio="xMidYMid slice"
+            ref={mockUp} // Imagen como fondo
           />
         </Use>
       </Svg>
@@ -39,15 +36,15 @@ export default function LaTag() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   svgContainer: {
-    position: 'absolute',
+    position: "absolute",
   },
   image: {
     width: 200,
     height: 200,
-    position: 'absolute',
+    position: "absolute",
   },
 });

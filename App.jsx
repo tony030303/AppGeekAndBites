@@ -1,17 +1,17 @@
-import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { NavigationContainer } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { StyleSheet, View } from 'react-native';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import React from "react";
+import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import { useFonts } from "expo-font";
+import { StyleSheet, View } from "react-native";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // Import the TabNavigator
-import BarraNavegacion from './src/components/BarraNavegacion';
+import BarraNavegacion from "./src/components/BarraNavegacion";
 
 export default function App() {
-  console.log('Funcionando! 🚀');
+  console.log("Funcionando! 🚀");
   const [fontLoad] = useFonts({
-    comic: require('./src/assets/fonts/Rethogen Atomics.otf'),
+    comic: require("./src/assets/fonts/Rethogen Atomics.otf"),
   });
 
   if (!fontLoad) {
@@ -35,6 +35,6 @@ export default function App() {
 const style = StyleSheet.create({
   backgroundContainer: {
     flex: 1,
-    position: 'relative',
+    position: "relative",
   },
 });
