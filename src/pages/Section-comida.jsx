@@ -1,25 +1,32 @@
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { StyleSheet } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import Menu from "../pages/Section-menu";
-import comidasData from "../jsons/comidas"; //importamos el archivo de comidas
+import MenuCard from "../components/MenuCard";
+import { SafeAreaView } from "react-native-safe-area-context";
+import {
+  ScrollView,
+  GestureHandlerRootView,
+} from "react-native-gesture-handler";
 import { ImageBackground } from "expo-image";
-const LIST_DATA = comidasData;
+
 const wallpaper = require("../assets/wallPaper/NeonRoad-02.gif");
 
-export default function Comida() {
+const Comida = () => {
   return (
-    <SafeAreaProvider>
+    <GestureHandlerRootView>
       <ImageBackground
         source={wallpaper}
         style={style.background}
         contentFit="cover"
       >
-        <Menu />
+        {/**CONTENEDOR DESPLAZABLE */}
+        {/* MENU */}
+        <MenuCard />
       </ImageBackground>
-    </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
-}
+};
+
+export default Comida;
 
 const style = StyleSheet.create({
   background: {
