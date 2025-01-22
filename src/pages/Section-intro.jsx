@@ -8,13 +8,12 @@ import style from "../styles/style-intro";
 import Filimina from "../components/Filimina";
 import Rotador from "../components/Rotador";
 
-// Galeria
-import * as images from "./intro-requires";
-
 // Jsons
 import Data from "../jsons/indexContent.json";
 import Credi from "../jsons/creditos.json";
 
+// Galeria
+const images = require("./intro-requires");
 const wallpaper = require("../assets/wallPaper/NeonRoad-01.gif");
 const logo = require("../assets/01-logo.jpeg");
 

@@ -33,14 +33,14 @@ const RotarView = (props) => {
   });
   console.log("Realizando rotacion");
   return (
-    <Animated.View
+    <Animated.TouchableOpacity
       style={{
         ...props.style,
         transform: [{ rotateY: rotateInterpolate }], // Aplicamos la rotación interpolada
       }}
     >
       {props.children}
-    </Animated.View>
+    </Animated.TouchableOpacity>
   );
 };
 

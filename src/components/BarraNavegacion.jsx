@@ -36,7 +36,7 @@ export default function BarraNavegacion() {
       <Tab.Screen name="Comida" component={Comidas} />
       <Tab.Screen name="Comics" component={Comics} />
       <Tab.Screen name="Contactos" component={Contactos} />
-      <Tab.Screen name="BETATESTING" component={Anima} />
+      {/* <Tab.Screen name="BETATESTING" component={Anima} /> */}
     </Tab.Navigator>
   );
 }
