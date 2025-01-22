@@ -54,14 +54,14 @@ const ComicsList = () => {
       keyExtractor={(item, index) => `${item.id}-${index}`} //se genera claves únicas
       contentContainerStyle={style.list} //estilo de la lista
       onEndReached={loadMoreComics} //se detecta cuando se alcanza el final de la lista para cargar más datos
-      onEndReachedThreshold={0.1} // Umbral que determina cuándo se ejecuta `onEndReached`
+      onEndReachedThreshold={0.1} //es un umbral que determina cuando se ejecuta onEndReached
     />
   );
 };
 
 const style = StyleSheet.create({
   list: {
-    padding: 30,
+    padding: 30, //espaciado interno
   },
 });
 
