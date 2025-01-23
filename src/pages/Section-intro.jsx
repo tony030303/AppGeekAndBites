@@ -7,7 +7,7 @@ import style from "../styles/style-intro";
 // Componentes
 import Filimina from "../components/Filimina";
 import Rotador from "../components/Rotador";
-
+import RotarPressable from "../components/TouchRotador";
 // Jsons
 import Data from "../jsons/indexContent.json";
 import Credi from "../jsons/creditos.json";
@@ -58,10 +58,12 @@ export default function Intro() {
             {credi && credi.length > 0 ? (
               credi.map((item, index) => (
                 <View key={index} style={style.itemContainerCredito}>
-                  <Image
-                    source={images[item.creditos.img.src]}
-                    style={style.imageCredito}
-                  />
+                  <RotarPressable>
+                    <Image
+                      source={images[item.creditos.img.src]}
+                      style={style.imageCredito}
+                    />
+                  </RotarPressable>
                   <Text style={style.nameCredito}>
                     {item.creditos.p.nombre}
                   </Text>
