@@ -13,6 +13,7 @@
     "@react-navigation/material-top-tabs": "^7.1.0",
     "@react-navigation/native": "^7.0.14",
     "@types/node": "*",
+    "axios": "^1.7.9",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",
     "expo": "~52.0.25",

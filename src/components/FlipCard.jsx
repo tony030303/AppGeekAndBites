@@ -4,9 +4,22 @@ import {
   View,
   TouchableWithoutFeedback,
   StyleSheet,
+  Text,
 } from "react-native";
 
-const FlipCard = ({ frente, atras, ...props }) => {
+const frenteDefault = () => {
+  return <Text style={styles.text}>Frente</Text>;
+};
+
+const atrasDefault = () => {
+  return <Text style={styles.text}>Atras</Text>;
+};
+
+const FlipCard = ({
+  frente = frenteDefault(),
+  atras = atrasDefault(),
+  ...props
+}) => {
   const [volteado, setVolteado] = useState(false);
   const animacionVoltear = useRef(new Animated.Value(0)).current;
 
@@ -85,6 +98,11 @@ const styles = StyleSheet.create({
     width: 300, // Tamaño base
     height: 200, // Tamaño base
     position: "relative",
+  },
+  text: {
+    color: "white",
+    fontSize: 10,
+    fontWeight: "bold",
   },
   front: {
     backgroundColor: "red",
