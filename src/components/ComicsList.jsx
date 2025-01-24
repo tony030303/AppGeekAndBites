@@ -4,7 +4,7 @@ import ComicCard from "../components/ComicCard";
 import comicsData from "../jsons/comics.json";
 import { imageMap } from "../assets/imageMap";
 
-const PAGE_SIZE = 10; //número de cómics a cargar por cada página
+const PAGE_SIZE = 2; //número de cómics a cargar por cada página
 
 const ComicsList = () => {
   const [comics, setComics] = useState([]); //estado que contiene la lista de cómics cargados
