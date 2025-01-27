@@ -18,7 +18,6 @@ const SliderPerks = () => {
 
   const scrollHandler = useAnimatedScrollHandler((event) => {
     translateX.value = event.contentOffset.x;
-    //console.log(translateX.value);
   });
   return (
     <Animated.ScrollView

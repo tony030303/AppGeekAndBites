@@ -2,7 +2,7 @@ const itemsComidas = [
   {
     index: 1,
     title: "BatBurger",
-    backgroundImage: require("../assets/comidas/hamburguesa.png"),
+    backgroundImage: require("../assets/comidas/hamburguesa2.png"),
     scale: "0.5",
     backContent:
       "Deliciosa hamburguesa con pan de la casa, carne, queso cheddar, cebolla, tomate, lechuga y salsa Sweet Bat",
@@ -10,7 +10,7 @@ const itemsComidas = [
   {
     index: 2,
     title: "PizzaSmash",
-    backgroundImage: require("../assets/comidas/pizza.png"),
+    backgroundImage: require("../assets/comidas/pizza2.png"),
     scale: "0.5",
     backContent:
       "Deliciosa combinación de salsa de tomate fresca, mozzarella derretida y albahaca fresca, todo sobre una crujiente base artesanal",

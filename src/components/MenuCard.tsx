@@ -5,16 +5,45 @@ import {
   TouchableOpacity,
   View,
   Text,
+  Animated,
   ImageBackground,
 } from "react-native";
-import React, { useState } from "react";
-import { useFonts } from "expo-font";
+import React, { useState, useRef } from "react";
 import * as Animatable from "react-native-animatable";
 import SliderPerks from "../components/SliderPerks";
-import Animated from "react-native-reanimated";
 import itemsComidas from "../jsons/itemsComidas";
 
-const ListItem = ({ item, tarjetasVolteadas, voltearTarjeta }) => {
+const ListItem = ({ item }) => {
+  const animatedValue = useRef(new Animated.Value(0)).current; // Valor animado
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const frontInterpolate = animatedValue.interpolate({
+    inputRange: [0, 180],
+    outputRange: ["0deg", "180deg"], // Frente rota de 0° a 180°
+  });
+  const backInterpolate = animatedValue.interpolate({
+    inputRange: [0, 180],
+    outputRange: ["180deg", "360deg"], // Parte trasera rota de 180° a 360°
+  });
+
+  const flipCard = () => {
+    // Detecta si la tarjeta está volteada y ajusta la animación
+
+    Animated.spring(animatedValue, {
+      toValue: isFlipped ? 0 : 180,
+      useNativeDriver: true, // Mejora el rendimiento
+    }).start();
+    setIsFlipped(!isFlipped);
+  };
+
+  const frontAnimatedStyle = {
+    transform: [{ rotateY: frontInterpolate }],
+  };
+
+  const backAnimatedStyle = {
+    transform: [{ rotateY: backInterpolate }],
+  };
+
   return (
     <Animatable.View
       animation={"fadeInUp"}
@@ -24,77 +53,46 @@ const ListItem = ({ item, tarjetasVolteadas, voltearTarjeta }) => {
       <TouchableOpacity
         style={styles.listItem}
         key={item.index}
-        onPress={() => voltearTarjeta(item.index)}
+        onPress={flipCard}
       >
-        <View
+        <Animated.View
           //Cara frontal
-          style={[
-            styles.image,
-            styles.cardFront,
-            {
-              //transform nos sirve para aplicar transformaciones visuales, en mi caso, para rotar en el eje Y.
-              //sabemos que tarjetasVolteadas es un booleano que indica si la tarjeta se volteó. Si está en true, entonces la tarjeta rota 180grados para mostrar la cara trasera de la tarjeta.
-              transform: tarjetasVolteadas[item.index]
-                ? [{ rotateY: "180deg" }]
-                : [{ rotateY: "0deg" }],
-            },
-          ]}
+          style={[styles.cardFront, frontAnimatedStyle]}
         >
-          <View style={{ flex: 1 }}>
-            <View style={styles.detailsContainer}>
-              <Text style={styles.name}> {item.title} </Text>
-            </View>
+          <View
+            style={{
+              //backgroundColor: "pink", //TODO:Sacar
+              justifyContent: "center",
+              alignItems: "center",
+              width: "100%",
+              height: "100%",
+            }}
+          >
             <ImageBackground
               source={item.backgroundImage}
               style={styles.background}
               resizeMode="cover"
-            />
+            >
+              <Text style={styles.name}> {item.title} </Text>
+            </ImageBackground>
           </View>
-        </View>
+        </Animated.View>
 
-        <View
+        <Animated.View
           //cara trasera
-          style={[
-            styles.cardBack,
-            {
-              //idem que la parte frontal de la tarjeta, solo que acá pasaria de la parte trasera a la parte frontal
-              transform: tarjetasVolteadas[item.index]
-                ? [{ rotateY: "0deg" }]
-                : [{ rotateY: "180deg" }],
-            },
-          ]}
+          style={[styles.cardBack, backAnimatedStyle]}
         >
-          <View>
-            <View style={styles.detailsContainer}>
-              <Text style={styles.descripcion}> {item.backContent} </Text>
-            </View>
+          <View style={styles.detailsContainer}>
+            <Text style={styles.descripcion}> {item.backContent} </Text>
           </View>
-        </View>
+        </Animated.View>
       </TouchableOpacity>
     </Animatable.View>
   );
 };
 
 const MenuCard = () => {
-  const [tarjetasVolteadas, setTarjetasVolteadas] = useState({});
-
-  //voltearTarjeta: lo que hace es invertir el estado de volteo de una tarjeta específica.
-  const voltearTarjeta = (index: number) => {
-    //por una función que toma el estado anterior
-    setTarjetasVolteadas((prevState) => ({
-      ...prevState, //copia el estado actual
-      [index]: !prevState[index], // Si está volteada, desvoltearla y viceversa, lo actualiza (true a false o viceversa)
-    }));
-  };
-
-  const renderItem = ({ item }) => (
-    <ListItem
-      item={item}
-      tarjetasVolteadas={tarjetasVolteadas}
-      voltearTarjeta={voltearTarjeta}
-    />
-  );
-  const ListEmptyComponent = () => {};
+  const renderItem = ({ item }) => <ListItem item={item} />;
 
   return (
     <View style={[styles.container]}>
@@ -106,6 +104,7 @@ const MenuCard = () => {
         showsVerticalScrollIndicator={false}
         horizontal={false}
         //PERKS
+        ListHeaderComponent={<Text style={styles.text}> Menu - Perks!</Text>}
         ListFooterComponent={<SliderPerks />}
       />
     </View>
@@ -117,13 +116,15 @@ export default MenuCard;
 const styles = StyleSheet.create({
   background: {
     flex: 1, // Asegura que el fondo ocupe todo el espacio disponible
+    width: "100%",
+    height: "100%",
     justifyContent: "center",
     alignItems: "center",
-    resizeMode: "cover",
+    resizeMode: "cover", //cover
   },
   container: {
     //backgroundColor: "black",
-    marginTop: 50,
+    marginTop: 10,
   },
   listItem: {
     height: 200,
@@ -133,14 +134,28 @@ const styles = StyleSheet.create({
     borderColor: "purple", // Color del borde
     margin: 8,
     perspective: "1000",
+    flex: 1,
     //borderRadius: 10,
   },
   detailsContainer: {
-    paddingHorizontal: 16,
-    paddingVertical: 5,
-    flexDirection: "column",
+    //paddingHorizontal: 16, //TODO: Sacar
+    //paddingVertical: 5, //TODO: Sacar
+    flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "stretch",
+    //backgroundColor: "blue", //TODO: Sacar
+  },
+  cardFront: {
+    flex: 1,
+    position: "absolute",
+    height: "95%",
+    width: "94%",
+    margin: 5,
+    justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "black",
+    backfaceVisibility: "hidden", // Oculta la parte trasera al rotar
+    //transition: "transform 0.6s", // Añade transición suave
   },
   cardBackBackground: {
     flex: 1,
@@ -149,14 +164,6 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.75)", // Fondo semitransparente
     width: "100%",
     height: "100%",
-  },
-  cardFront: {
-    //position: "absolute",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "black",
-    backfaceVisibility: "hidden", // Oculta la parte trasera al rotar
-    //transition: "transform 0.6s", // Añade transición suave
   },
   cardBack: {
     position: "absolute",
@@ -167,6 +174,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
     margin: 5,
     backfaceVisibility: "hidden", // Oculta la parte trasera al rotar
+    transform: [{ rotateY: "180deg" }],
     //transition: "transform 0.6s", // Añade transición suave
   },
   image: {
@@ -177,14 +185,25 @@ const styles = StyleSheet.create({
   },
   name: {
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: 20,
     color: "white",
     textAlign: "center",
+    marginBottom: 150,
   },
   descripcion: {
     fontWeight: "bold",
     fontSize: 13,
     color: "#fff",
     textAlign: "center",
+  },
+  text: {
+    fontSize: 40,
+    textAlign: "center",
+    margin: 10,
+    marginBottom: 20,
+    color: "white",
+    textTransform: "uppercase",
+    fontWeight: "700",
+    fontFamily: "comic",
   },
 });

@@ -7,7 +7,7 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from "react-native";
-import axios from "axios";
+//import axios from "axios";
 // https://randomuser.me/api/?page=&results=10&seed=abc
 const App = () => {
   const [users, setUsers] = useState([]); // parametro donde se contiene todos los usuarios (json)
@@ -17,12 +17,12 @@ const App = () => {
   const getUsers = () => {
     //fetching con los datos online
     setIsLoading(true); //se pone en true para mostrar datos
-    axios
-      .get(`https://randomuser.me/api/?page=${currentPage}&results=10&seed=abc`)
-      .then((res) => {
-        setUsers([...users, ...res.data.results]); //aca se meten todos los datos y se los suman junto a los primeros valores de users
-        setIsLoading(false); //se pone en falso para que deje de hacer algo
-      });
+    //axios
+    //.get(`https://randomuser.me/api/?page=${currentPage}&results=10&seed=abc`)
+    //.then((res) => {
+    //setUsers([...users, ...res.data.results]); //aca se meten todos los datos y se los suman junto a los primeros valores de users
+    //setIsLoading(false); //se pone en falso para que deje de hacer algo
+    //});
   };
 
   const renderLoader = () => {
