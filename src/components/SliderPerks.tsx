@@ -6,12 +6,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { PerksCard } from "../components/PerksCard";
 import perks from "../jsons/perks"; //importamos el archivo de perks
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
+import styles from "../styles/style-perks";
 
 const SliderPerks = () => {
   const translateX = useSharedValue(0);

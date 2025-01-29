@@ -6,6 +6,7 @@ import Animated, {
   interpolate,
   Extrapolation,
 } from "react-native-reanimated";
+import styles from "../styles/style-perks";
 
 interface PerksProps {
   ruta: any;
@@ -74,36 +75,5 @@ const PerksCard: React.FC<PerksProps> = ({ index, ruta, translateX }) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  pageContainer: {
-    width,
-    height,
-    alignItems: "center",
-    justifyContent: "center",
-    overflow: "hidden",
-  },
-  perkContainer: {
-    //funciona como un contenedor para la imagen de la lata
-    height: SIZE,
-    width: SIZE,
-    //backgroundColor: "rgba(0,0,256,0.4)",
-  },
-  text: {
-    fontSize: 40,
-    textAlign: "center",
-    margin: 10,
-    backgroundColor: "red",
-    marginBottom: 20,
-    color: "white",
-    textTransform: "uppercase",
-    fontWeight: "700",
-  },
-  image: {
-    height: SIZE,
-    width: SIZE,
-    resizeMode: "contain",
-  },
-});
 
 export { PerksCard };
