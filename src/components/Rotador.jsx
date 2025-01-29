@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Animated, Easing, TouchableOpacity } from "react-native";
-
-const logo = require("../assets/01-logo.jpeg");
+import { Animated, Easing } from "react-native";
 
 // TAG
 const RotarView = (props) => {
@@ -25,7 +23,7 @@ const RotarView = (props) => {
         }),
       ]),
     ).start(); // Comienza la animación
-  }, []);
+  }, [rotar]);
   // Interpolamos el valor de rotación para que sea de 0 a 360 grados
   const rotateInterpolate = rotar.interpolate({
     inputRange: [0, 1],

@@ -15,7 +15,7 @@ import { BlurView } from "expo-blur";
 
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
 
-const { height, width } = Dimensions.get("window");
+const { width } = Dimensions.get("window");
 
 const SIZE = width * 0.25;
 

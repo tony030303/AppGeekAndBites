@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { Dimensions, StyleSheet, View } from "react-native";
 import React from "react";
 import Animated, {
   useAnimatedStyle,
@@ -25,15 +25,15 @@ const PerksCard: React.FC<PerksProps> = ({ index, ruta, translateX }) => {
       translateX.value,
       inputRange,
       [0, 1, 0],
-      Extrapolation.CLAMP //En caso de extrapolarse
+      Extrapolation.CLAMP, //En caso de extrapolarse
     );
 
-    const borderRadius = interpolate(
-      translateX.value,
-      inputRange,
-      [0, SIZE / 2, 0], //Al estar en la pagina sera un circulo, al movernos sera un cuadrado
-      Extrapolation.CLAMP //En caso de extrapolarse
-    );
+    // const borderRadius = interpolate(
+    //   translateX.value,
+    //   inputRange,
+    //   [0, SIZE / 2, 0], //Al estar en la pagina sera un circulo, al movernos sera un cuadrado
+    //   Extrapolation.CLAMP, //En caso de extrapolarse
+    // );
 
     return {
       //borderRadius,
@@ -41,30 +41,30 @@ const PerksCard: React.FC<PerksProps> = ({ index, ruta, translateX }) => {
     };
   });
 
-  const rTextStyle = useAnimatedStyle(() => {
-    const translateY = interpolate(
-      translateX.value,
-      inputRange,
-      [height / 2, 0, -height / 2],
-      Extrapolation.CLAMP //En caso de extrapolarse
-    );
+  // const rTextStyle = useAnimatedStyle(() => {
+  //   const translateY = interpolate(
+  //     translateX.value,
+  //     inputRange,
+  //     [height / 2, 0, -height / 2],
+  //     Extrapolation.CLAMP, //En caso de extrapolarse
+  //   );
 
-    const opacity = interpolate(
-      translateX.value,
-      inputRange,
-      [-1, 1, -1],
-      Extrapolation.CLAMP
-    );
+  //   const opacity = interpolate(
+  //     translateX.value,
+  //     inputRange,
+  //     [-1, 1, -1],
+  //     Extrapolation.CLAMP,
+  //   );
 
-    return {
-      opacity,
-      transform: [
-        {
-          translateY,
-        },
-      ],
-    };
-  });
+  //   return {
+  //     opacity,
+  //     transform: [
+  //       {
+  //         translateY,
+  //       },
+  //     ],
+  //   };
+  // });
 
   return (
     <View style={styles.pageContainer}>

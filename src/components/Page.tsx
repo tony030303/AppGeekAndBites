@@ -28,12 +28,12 @@ const Page: React.FC<PageProps> = ({ index, ruta, translateX }) => {
       Extrapolation.CLAMP, //En caso de extrapolarse
     );
 
-    const borderRadius = interpolate(
-      translateX.value,
-      inputRange,
-      [0, SIZE / 2, 0], //Al estar en la pagina sera un circulo, al movernos sera un cuadrado
-      Extrapolation.CLAMP, //En caso de extrapolarse
-    );
+    // const borderRadius = interpolate(
+    //   translateX.value,
+    //   inputRange,
+    //   [0, SIZE / 2, 0], //Al estar en la pagina sera un circulo, al movernos sera un cuadrado
+    //   Extrapolation.CLAMP, //En caso de extrapolarse
+    // );
 
     return {
       //borderRadius,

@@ -5,7 +5,6 @@ import { ImageBackground } from "expo-image";
 import ContactList from "../components/ContactosList.jsx";
 import style from "../styles/style-intro.jsx";
 import styleContactos from "../styles/style-contactos";
-
 // Componentes
 
 const wallpaper = require("../assets/wallPaper/NeonRoad-04.gif");
