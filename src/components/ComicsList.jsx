@@ -39,7 +39,7 @@ const ComicsList = () => {
   // Carga la primera página al montar
   useEffect(() => {
     loadMoreComics();
-  }, [loadMoreComics]); // Ahora loadMoreComics es estable
+  }, [loadMoreComics]); // Ahora loadMoreComyarics es estable
 
   return (
     <FlatList
