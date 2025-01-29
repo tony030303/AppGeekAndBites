@@ -1,11 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import MenuCard from "../components/MenuCard";
-import { SafeAreaView } from "react-native-safe-area-context";
-import {
-  ScrollView,
-  GestureHandlerRootView,
-} from "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ImageBackground } from "expo-image";
 import { useFonts } from "expo-font";
 

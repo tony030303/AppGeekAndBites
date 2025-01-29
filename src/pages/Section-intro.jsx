@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, Image, View } from "react-native";
+import { Text, Image, View, ActivityIndicator } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { ImageBackground } from "expo-image";
 import style from "../styles/style-intro";
@@ -8,6 +8,7 @@ import style from "../styles/style-intro";
 import Filimina from "../components/Filimina";
 import Rotador from "../components/Rotador";
 import RotarPressable from "../components/TouchRotador";
+
 // Jsons
 import Data from "../jsons/indexContent.json";
 import Credi from "../jsons/creditos.json";
@@ -17,64 +18,60 @@ const images = require("./intro-requires");
 const wallpaper = require("../assets/wallPaper/NeonRoad-01.gif");
 const logo = require("../assets/01-logo.jpeg");
 
-// Codigo
 export default function Intro() {
-  const [data, setData] = useState(null);
-  const [credi, setCredi] = useState(null);
+  const [data, setData] = useState([]);
+  const [credi, setCredi] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    setData(Data);
-    setCredi(Credi);
+    try {
+      setData(Data);
+      setCredi(Credi);
+      setLoading(false);
+    } catch (err) {
+      setError(err);
+      setLoading(false);
+    }
   }, []);
 
-  console.log("Intro Cargada! 👑");
+  if (loading) return <ActivityIndicator size="large" color="#0000ff" />;
+  if (error) return <Text>Error al cargar los datos.</Text>;
 
   return (
-    <>
-      <ImageBackground
-        source={wallpaper}
-        style={style.background}
-        contentFit="cover"
-      >
-        <ScrollView contentContainerStyle={style.scrollContainer}>
-          <Text style={style.text}>Bienvenidos a Gekks & Bites!</Text>
-          <Rotador>
-            <Image source={logo} style={style.img} />
-          </Rotador>
+    <ImageBackground
+      source={wallpaper}
+      style={style.background}
+      contentFit="cover"
+    >
+      <ScrollView contentContainerStyle={style.scrollContainer}>
+        <Text style={style.text}>Bienvenidos a Gekks & Bites!</Text>
+        <Rotador>
+          <Image source={logo} style={style.img} />
+        </Rotador>
 
-          {data && data.length > 0 ? (
-            data.map((item, index) => (
-              <Filimina key={index} imagen={images[item.contenido.img.src]}>
-                {item.contenido.p.descripcion}
-              </Filimina>
-            ))
-          ) : (
-            <Text>Cargando datos...</Text>
-          )}
+        {data.map((item, index) => (
+          <Filimina key={index} imagen={images[item.contenido.img.src]}>
+            {item.contenido.p.descripcion}
+          </Filimina>
+        ))}
 
-          <Text style={style.text}>App elaborada por:</Text>
+        <Text style={style.text}>App elaborada por:</Text>
 
-          <View style={style.containerCredito}>
-            {credi && credi.length > 0 ? (
-              credi.map((item, index) => (
-                <View key={index} style={style.itemContainerCredito}>
-                  <RotarPressable>
-                    <Image
-                      source={images[item.creditos.img.src]}
-                      style={style.imageCredito}
-                    />
-                  </RotarPressable>
-                  <Text style={style.nameCredito}>
-                    {item.creditos.p.nombre}
-                  </Text>
-                </View>
-              ))
-            ) : (
-              <Text>Cargando datos...</Text>
-            )}
-          </View>
-        </ScrollView>
-      </ImageBackground>
-    </>
+        <View style={style.containerCredito}>
+          {credi.map((item, index) => (
+            <View key={index} style={style.itemContainerCredito}>
+              <RotarPressable>
+                <Image
+                  source={images[item.creditos.img.src]}
+                  style={style.imageCredito}
+                />
+              </RotarPressable>
+              <Text style={style.nameCredito}>{item.creditos.p.nombre}</Text>
+            </View>
+          ))}
+        </View>
+      </ScrollView>
+    </ImageBackground>
   );
 }

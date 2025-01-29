@@ -13,7 +13,7 @@ const WORDS = ["", "", "", ""];
 */
 //pueden colocarse aca las rutas para cada una de las etiquetas
 
-const RUTAS = ["perk_01.png", "perk_02.png", "perk_03.png", "perk_04.png"];
+// const RUTAS = ["perk_01.png", "perk_02.png", "perk_03.png", "perk_04.png"];
 
 const styles = StyleSheet.create({
   container: {
