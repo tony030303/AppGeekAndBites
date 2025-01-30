@@ -1,3 +1,4 @@
+import { ImageBackground } from "expo-image";
 import React, { useState, useRef } from "react";
 import {
   Animated,
@@ -5,19 +6,40 @@ import {
   TouchableWithoutFeedback,
   StyleSheet,
   Text,
+  Image,
+  Dimensions,
 } from "react-native";
+import styles from "../styles/style-flipcards";
 
-const frenteDefault = () => {
-  return <Text style={styles.text}>Frente</Text>;
+const frenteDefault = ({ mostrarImagen, item }) => {
+  return (
+    <ImageBackground
+      source={item.backgroundImage}
+      style={styles.imagen}
+      contentFit="cover"
+    >
+      <Text style={styles.text}> {mostrarImagen ? "" : item.title} </Text>
+    </ImageBackground>
+  );
 };
 
-const atrasDefault = () => {
-  return <Text style={styles.text}>Atras</Text>;
+const atrasDefault = ({ mostrarImagen, item }) => {
+  return (
+    <ImageBackground
+      source={mostrarImagen ? item.backgroundImage : null}
+      style={[styles.imagen, styles.imagenBack]}
+      contentFit="cover"
+    >
+      <Text style={styles.contentText}>{item.backContent}</Text>
+    </ImageBackground>
+  );
 };
 
 const FlipCard = ({
-  frente = frenteDefault(),
-  atras = atrasDefault(),
+  item,
+  mostrar,
+  frente = frenteDefault({ mostrarImagen: mostrar, item: item }),
+  atras = atrasDefault({ mostrarImagen: mostrar, item: item }),
   ...props
 }) => {
   const [volteado, setVolteado] = useState(false);
@@ -87,38 +109,5 @@ const FlipCard = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  cartaContenedor: {
-    width: 300, // Tamaño base
-    height: 200, // Tamaño base
-    position: "relative",
-  },
-  text: {
-    color: "white",
-    fontSize: 10,
-    fontWeight: "bold",
-  },
-  front: {
-    backgroundColor: "red",
-  },
-  back: {
-    backgroundColor: "blue",
-  },
-  card: {
-    width: "100%",
-    height: "100%",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 5,
-    position: "absolute",
-    backfaceVisibility: "hidden",
-  },
-});
 
 export default FlipCard;

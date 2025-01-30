@@ -1,9 +1,9 @@
 import { FlatList, View, Text } from "react-native";
 import React from "react";
 import SliderPerks from "../components/SliderPerks";
-import ListItem from "../components/ListItem";
 import itemsComidas from "../jsons/itemsComidas";
 import styleComidas from "../styles/style-comidas";
+import FlipCard from "./FlipCard";
 
 const MenuCard = () => {
   return (
@@ -12,7 +12,7 @@ const MenuCard = () => {
         data={itemsComidas}
         keyExtractor={(_, i) => String(i)}
         numColumns={2}
-        renderItem={({ item }) => <ListItem item={item} />}
+        renderItem={({ item }) => <FlipCard item={item} mostrar={false} />}
         showsVerticalScrollIndicator={false}
         horizontal={false}
         //TITULO

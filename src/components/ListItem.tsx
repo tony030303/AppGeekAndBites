@@ -9,6 +9,8 @@ import React, { useState, useRef } from "react";
 import * as Animatable from "react-native-animatable";
 import styleComidas from "../styles/style-comidas";
 
+//TODO: ELIMINAR
+
 const ListItem = ({ item }) => {
   const animatedValue = useRef(new Animated.Value(0)).current; // Valor animado
   const [isFlipped, setIsFlipped] = useState(false);

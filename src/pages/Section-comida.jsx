@@ -1,9 +1,9 @@
-import { StyleSheet } from "react-native";
 import React from "react";
 import MenuCard from "../components/MenuCard";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ImageBackground } from "expo-image";
 import { useFonts } from "expo-font";
+import styleComidas from "../styles/style-comidas";
 
 const wallpaper = require("../assets/wallPaper/NeonRoad-02.gif");
 
@@ -20,7 +20,7 @@ const Comida = () => {
     <GestureHandlerRootView>
       <ImageBackground
         source={wallpaper}
-        style={style.background}
+        style={styleComidas.background}
         contentFit="cover"
       >
         {/**CONTENEDOR DESPLAZABLE */}
@@ -32,11 +32,3 @@ const Comida = () => {
 };
 
 export default Comida;
-
-const style = StyleSheet.create({
-  background: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
