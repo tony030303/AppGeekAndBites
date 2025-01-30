@@ -1,0 +1,185 @@
+{
+  "comics": [
+    {
+      "id": 1,
+      "title": "X-Men: Shattershot",
+      "year": 1993,
+      "cover": "comic1.png"
+    },
+    {
+      "id": 2,
+      "title": "Amazing Spider-Man 70",
+      "year": 1963,
+      "cover": "comic2.png"
+    },
+    {
+      "id": 3,
+      "title": "DeadPool 1",
+      "year": 2024,
+      "cover": "comic3.png"
+    },
+    {
+      "id": 4,
+      "title": "Amazing Fantasy 15",
+      "year": 1962,
+      "cover": "comic4.png"
+    },
+    {
+      "id": 5,
+      "title": "X-Men Vol 1 #100",
+      "year": 1976,
+      "cover": "comic5.png"
+    },
+    {
+      "id": 6,
+      "title": "The Incredible Hulk #105",
+      "year": 1968,
+      "cover": "comic6.png"
+    },
+    {
+      "id": 7,
+      "title": "Detective Comics #27",
+      "year": 1939,
+      "cover": "comic7.png"
+    },
+    {
+      "id": 8,
+      "title": "Action Comics #1",
+      "year": 1938,
+      "cover": "comic8.png"
+    },
+    {
+      "id": 9,
+      "title": "Iron Man Vol 1 #1",
+      "year": 1968,
+      "cover": "comic9.png"
+    },
+    {
+      "id": 10,
+      "title": "The Avengers #1",
+      "year": 1963,
+      "cover": "comic10.png"
+    },
+    {
+      "id": 11,
+      "title": "Captain America #1",
+      "year": 1941,
+      "cover": "comic11.png"
+    },
+    {
+      "id": 12,
+      "title": "Fantastic Four #1",
+      "year": 1961,
+      "cover": "comic12.png"
+    },
+    {
+      "id": 13,
+      "title": "Batman #1",
+      "year": 1940,
+      "cover": "comic13.png"
+    },
+    {
+      "id": 14,
+      "title": "Superman Vol 1 #1",
+      "year": 1939,
+      "cover": "comic14.png"
+    },
+    {
+      "id": 15,
+      "title": "Thor Vol 1 #1",
+      "year": 1966,
+      "cover": "comic15.png"
+    },
+    {
+      "id": 16,
+      "title": "Green Lantern #1",
+      "year": 1960,
+      "cover": "comic16.png"
+    },
+    {
+      "id": 17,
+      "title": "The Flash Vol 1 #123",
+      "year": 1961,
+      "cover": "comic17.png"
+    },
+    {
+      "id": 18,
+      "title": "Wonder Woman #1",
+      "year": 1942,
+      "cover": "comic18.png"
+    },
+    {
+      "id": 19,
+      "title": "The Amazing SpiderMan #50",
+      "year": 1967,
+      "cover": "comic19.png"
+    },
+    {
+      "id": 20,
+      "title": "Daredevil #1",
+      "year": 1964,
+      "cover": "comic20.png"
+    },
+    {
+      "id": 21,
+      "title": "Doctor Strange #169",
+      "year": 1968,
+      "cover": "comic21.png"
+    },
+    {
+      "id": 22,
+      "title": "Black Panther #1",
+      "year": 1977,
+      "cover": "comic22.png"
+    },
+    {
+      "id": 23,
+      "title": "Justice League #1",
+      "year": 1960,
+      "cover": "comic23.png"
+    },
+    {
+      "id": 24,
+      "title": "Teen Titans #1",
+      "year": 1966,
+      "cover": "comic24.png"
+    },
+    {
+      "id": 25,
+      "title": "Hawkeye Vol 1 #1",
+      "year": 1983,
+      "cover": "comic25.png"
+    },
+    {
+      "id": 26,
+      "title": "The New Teen Titans #1",
+      "year": 1980,
+      "cover": "comic26.png"
+    },
+    {
+      "id": 27,
+      "title": "Green Arrow Vol 1 #1",
+      "year": 1988,
+      "cover": "comic27.png"
+    },
+    {
+      "id": 28,
+      "title": "Aquaman Vol 1 #1",
+      "year": 1962,
+      "cover": "comic28.png"
+    },
+    {
+      "id": 29,
+      "title": "The Incredible Hulk #1",
+      "year": 1962,
+      "cover": "comic29.png"
+    },
+    {
+      "id": 30,
+      "title": "Avengers: Infinity",
+      "year": 2014,
+      "cover": "comic30.png"
+    }
+  ]  
+}
+
