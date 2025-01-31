@@ -62,4 +62,10 @@ message = client.messages.create(
   to='whatsapp:+5492994291590'
 )
 
+message = client.messages.create(
+  from_='whatsapp:+14155238886',
+  body=commit_message,
+  to='whatsapp:+5492995894246'
+)
+
 print(message.sid)
