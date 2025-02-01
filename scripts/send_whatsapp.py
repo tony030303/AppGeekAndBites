@@ -19,16 +19,33 @@ github_commit = os.getenv('GITHUB_COMMIT_MESSAGE') #Nombre de commit
 # Mensaje personalizado
 commit_message = f"🚀✨ *Nuevo push realizado por:*\n{github_actor}\n\n💾✨ *Repositorio:*\n{github_repo}\n\n🌱✨ *Rama:*\n{github_ref}\n\n📜✨ *Mensaje del commit:*\n{commit_message} \n\n_(NO RESPONDER A ESTE MENSAJE)_"
 
+
+#FACUNDO
 message = client.messages.create(
   from_='whatsapp:+14155238886',
   body=commit_message,
   to='whatsapp:+5492994291590'
 )
 
+#Toni
 message = client.messages.create(
   from_='whatsapp:+14155238886',
   body=commit_message,
-  to='whatsapp:+5492995894246'
+  to='whatsapp:+5492995776578'
+)
+
+#Albany
+message = client.messages.create(
+  from_='whatsapp:+14155238886',
+  body=commit_message,
+  to='whatsapp:+5491169601790'
+)
+
+#Sthey
+message = client.messages.create(
+  from_='whatsapp:+14155238886',
+  body=commit_message,
+  to='whatsapp:+5492994636046'
 )
 
 print(message.sid)
