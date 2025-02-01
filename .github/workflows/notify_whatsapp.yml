@@ -7,7 +7,7 @@ on:
 
 jobs:
   send-whatsapp:
-    runs-on: ubuntu-latest # Usar una máquina virtual con Ubuntu
+    runs-on: ubuntu-latest
     environment: whatsapp # Especificar el environment
 
     steps:
@@ -27,20 +27,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install twilio python-dotenv
 
-      # Paso 4: Mostrar variables de entorno (depuración)
-      - name: Mostrar variables de entorno
-        env:
-          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
-          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
-          GITHUB_ACTOR: ${{ github.actor }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_REF: ${{ github.ref }}
+      # Paso 4: Mostrar el mensaje del commit
+      - name: Mostrar mensaje del commit
         run: |
-          echo "TWILIO_ACCOUNT_SID: $TWILIO_ACCOUNT_SID"
-          echo "TWILIO_AUTH_TOKEN: $TWILIO_AUTH_TOKEN"
-          echo "GITHUB_ACTOR: $GITHUB_ACTOR"
-          echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
-          echo "GITHUB_REF: $GITHUB_REF"
+          echo "Mensaje del commit: ${{ github.event.head_commit.message }}"
 
       # Paso 5: Ejecutar el script
       - name: Enviar mensaje de WhatsApp
@@ -50,5 +40,6 @@ jobs:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_REF: ${{ github.ref }}
+          GITHUB_COMMIT_MESSAGE: ${{ github.event.head_commit.message }} # Mensaje del commit
         run: |
           python scripts/send_whatsapp.py
