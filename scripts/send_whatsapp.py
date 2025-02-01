@@ -17,7 +17,7 @@ github_ref = os.getenv('GITHUB_REF')            # Rama o referencia
 github_commit = os.getenv('GITHUB_COMMIT_MESSAGE') #Nombre de commit
 
 # Mensaje personalizado
-commit_message = f"🚀✨ Nuevo push realizado por: {github_actor}\n\n💾✨ Repositorio: {github_repo}\n\n🌱✨ Rama: {github_ref}\n\n📜✨ Mensaje del commit: {commit_message} \n(NO RESPONDER A ESTE MENSAJE)"
+commit_message = f"🚀✨ *Nuevo push realizado por:*\n{github_actor}\n\n💾✨ *Repositorio:*\n{github_repo}\n\n🌱✨ *Rama:*\n{github_ref}\n\n📜✨ *Mensaje del commit:*\n{commit_message} \n\n_(NO RESPONDER A ESTE MENSAJE)_"
 
 message = client.messages.create(
   from_='whatsapp:+14155238886',
