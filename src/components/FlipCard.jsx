@@ -6,8 +6,6 @@ import {
   TouchableWithoutFeedback,
   StyleSheet,
   Text,
-  Image,
-  Dimensions,
 } from "react-native";
 import styles from "../styles/style-flipcards";
 

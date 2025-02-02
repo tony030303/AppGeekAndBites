@@ -8,7 +8,7 @@ import Intro from "../pages/Section-intro";
 import Comidas from "../pages/Section-comida";
 import Comics from "../pages/Section-comics";
 import Contactos from "../pages/Section-contactos";
-import Anima from "../components/pruebaFlipCard";
+// import Anima from "../components/pruebaFlipCard";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -36,7 +36,7 @@ export default function BarraNavegacion() {
       <Tab.Screen name="Comida" component={Comidas} />
       <Tab.Screen name="Comics" component={Comics} />
       <Tab.Screen name="Contactos" component={Contactos} />
-      <Tab.Screen name="Test" component={Anima} />
+      {/* <Tab.Screen name="Test" component={Anima} /> */}
     </Tab.Navigator>
   );
 }
