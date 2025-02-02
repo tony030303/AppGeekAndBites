@@ -1,35 +1,23 @@
-{
-  "tasks": [
+[
     {
-      "id": "1",
+      "id": 1,
       "title": "Hacer la compra",
       "description": "Comprar leche, pan y frutas.",
       "completed": false,
       "createdAt": "2023-10-01T12:00:00Z"
     },
     {
-      "id": "2",
+      "id": 2,
       "title": "Estudiar para el examen",
       "description": "Repasar los temas de backend y frontend.",
       "completed": true,
       "createdAt": "2023-10-02T09:30:00Z"
     },
     {
-      "id": "3",
+      "id": 3,
       "title": "Hacer ejercicio",
       "description": "Ir al gimnasio por la tarde.",
       "completed": false,
       "createdAt": "2023-10-03T15:45:00Z"
-    },
-    {
-      "id": "b1a1",
-      "title": "",
-      "completed": false
-    },
-    {
-      "id": "af4f",
-      "title": "Lavarse las manos",
-      "completed": false
     }
   ]
-}
