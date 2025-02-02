@@ -49,6 +49,16 @@ const TaskApp = () => {
         value={newTask}
         onChangeText={setNewTask}
       />
+      <TextInput
+        placeholder="Nueva tarea"
+        value={newTask}
+        onChangeText={setNewTask}
+      />
+      <TextInput
+        placeholder="Nueva tarea"
+        value={newTask}
+        onChangeText={setNewTask}
+      />
       <Button title="Crear Tarea" onPress={handleCreateTask} />
     </View>
   );
