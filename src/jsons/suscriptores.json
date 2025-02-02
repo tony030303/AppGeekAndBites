@@ -1,0 +1,19 @@
+{
+  "subscriptores": [
+    {
+      "id": 1,
+      "name": "nombre-suscriptor1",
+      "email": "correo1@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "nombre-suscriptor2",
+      "email": "correo2@gmail.com"
+    },
+    {
+      "id": "3198",
+      "name": "Algo",
+      "email": "S"
+    }
+  ]
+}
