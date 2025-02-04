@@ -54,7 +54,7 @@ export default function BarraNavegacion() {
         name="Intro"
         component={Intro}
         listeners={{
-          tabPress: (e) => {
+          tabPress: () => {
             handleIntroPress(); // Llamar a la función al presionar Intro
           },
         }}

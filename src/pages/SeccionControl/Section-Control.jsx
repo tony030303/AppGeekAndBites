@@ -1,19 +1,54 @@
 import { useState } from "react";
-import { View, Text, TextInput } from "react-native";
-
+import { Text, TextInput, Button, View } from "react-native";
+import Credenciales from "./Credenciales.json";
+import Controlador from "./Controlador";
 function Control() {
-  const [nombre, setNombre] = useState("Nombre");
-  const [codigo, setCodigo] = useState("Codigo");
+  const [nombre, setNombre] = useState("");
+  const [codigo, setCodigo] = useState("");
+  const [error, setError] = useState(false);
+  const [modal, setModal] = useState(true);
+
+  const verificarCredencial = () => {
+    console.log("Verificando");
+
+    // Buscar en el array un usuario con el nombre ingresado
+    const usuario = Credenciales.find((admin) => admin.nombre === nombre);
+
+    if (usuario && usuario.codigo === codigo) {
+      setError(false);
+      setModal(false);
+    } else {
+      setNombre("");
+      setCodigo("");
+      setError(true);
+    }
+  };
+
   return (
     <View>
-      <Text>
-        Esta seccion solo funciona con las credenciales de los adminitradores
-      </Text>
-      <TextInput onChangeText={setNombre} placeholder={nombre} />
-      <TextInput onChangeText={setCodigo} placeholder={codigo} />
-      <Text>
-        Ingresado: {nombre}, y {codigo}
-      </Text>
+      {modal && (
+        <>
+          <Text>
+            Esta sección solo funciona con las credenciales de los
+            administradores.
+          </Text>
+          <TextInput
+            onChangeText={setNombre}
+            value={nombre}
+            placeholder="Nombre"
+          />
+          <TextInput
+            onChangeText={setCodigo}
+            value={codigo}
+            placeholder="Código"
+            secureTextEntry
+          />
+          <Button title="Ingresar" onPress={verificarCredencial} />
+          {error && <Text>⚠️ Credenciales Incorrectas</Text>}
+        </>
+      )}
+
+      {!modal && <Controlador />}
     </View>
   );
 }
