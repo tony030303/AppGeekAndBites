@@ -9,8 +9,6 @@ function Control() {
   const [modal, setModal] = useState(true);
 
   const verificarCredencial = () => {
-    console.log("Verificando");
-
     // Buscar en el array un usuario con el nombre ingresado
     const usuario = Credenciales.find((admin) => admin.nombre === nombre);
 

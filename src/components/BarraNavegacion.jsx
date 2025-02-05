@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { Image } from "expo-image";
-import { StyleSheet } from "react-native";
-
+import { StyleSheet, Vibration } from "react-native";
+import { Audio } from 'expo-av';
 // Pages
 import Intro from "../pages/Section-intro";
 import Comidas from "../pages/Section-comida";
@@ -20,20 +20,34 @@ export default function BarraNavegacion() {
 
   console.log("Barra de Secciones Funcionando! 🔍");
 
+  const playSound = async () => {
+    // Cargar y reproducir el sonido
+    const { sound } = await Audio.Sound.createAsync(
+      require("../assets/secreto.mp3"),
+    );
+    await sound.playAsync();
+  };
+
   // Función para manejar los toques en Intro
   const handleIntroPress = () => {
+    Vibration.vibrate(40);
     if (!showAdmin) {
       setTapCount(tapCount + 1);
       console.log("tocado " + tapCount);
 
       if (tapCount === 5) {
         setShowAdmin(true); // Mostrar Admin después de 5 toques
+        playSound();
+        Vibration.vibrate([
+          0, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100,
+        ]);
       }
     }
   };
 
   // Función para manejar los toques en Intro
   const wrongPress = () => {
+    Vibration.vibrate(20);
     if (!showAdmin) {
       console.log("tocado incorrecto");
       setTapCount(0);
@@ -99,6 +113,11 @@ export default function BarraNavegacion() {
         <Tab.Screen
           name="Admin"
           component={Admin}
+          listeners={{
+            tabPress: () => {
+              Vibration.vibrate(20);
+            },
+          }}
           options={{
             tabBarLabel: "Admin",
             tabBarLabelStyle: { ...style.buttonText, color: "red" }, // Estilo diferente para destacar

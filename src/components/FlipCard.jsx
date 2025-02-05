@@ -24,7 +24,7 @@ const frenteDefault = ({ mostrarImagen, item }) => {
 const atrasDefault = ({ mostrarImagen, item }) => {
   return (
     <ImageBackground
-      source={item.backgroundGif}   //mostrarImagen ? item.backgroundImage : null
+      source={item.backgroundGif} //mostrarImagen ? item.backgroundImage : null
       style={[styles.imagen, styles.imagenBack]}
       contentFit="cover"
     >
