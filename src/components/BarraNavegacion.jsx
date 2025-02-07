@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { Image } from "expo-image";
 import { StyleSheet, Vibration } from "react-native";
-import { Audio } from 'expo-av';
+import { Audio } from "expo-av";
 // Pages
 import Intro from "../pages/Section-intro";
 import Comidas from "../pages/Section-comida";
@@ -23,7 +23,7 @@ export default function BarraNavegacion() {
   const playSound = async () => {
     // Cargar y reproducir el sonido
     const { sound } = await Audio.Sound.createAsync(
-      require("../assets/secreto.mp3"),
+      require("../assets/sounds/secreto.mp3"),
     );
     await sound.playAsync();
   };
