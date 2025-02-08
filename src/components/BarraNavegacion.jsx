@@ -47,7 +47,7 @@ export default function BarraNavegacion() {
 
   // Función para manejar los toques en Intro
   const wrongPress = () => {
-    Vibration.vibrate(20);
+    Vibration.vibrate(100);
     if (!showAdmin) {
       console.log("tocado incorrecto");
       setTapCount(0);

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { View, Button, Vibration } from "react-native";
+import React, { useState } from "react";
+import { View, Button, Vibration, StyleSheet } from "react-native";
 import { Audio } from "expo-av";
 
 import ABMComic from "./ABM/Comic/InterfazComic";
@@ -9,20 +9,17 @@ function Controlador() {
   const [verComida, setVerComida] = useState(false);
   const [verComic, setVerComic] = useState(false);
   const [verCancelar, setVerCancelar] = useState(false);
-  const abrirABMComida = () => {
-    setVerComida(true);
-    setVerCancelar(true);
-    playSound("Facundo");
-  };
 
+  // Función para reproducir sonidos
   const playSound = async (usuario) => {
     try {
+      // Reproducir sonido de bienvenida
       const { sound: welcome } = await Audio.Sound.createAsync(
         require("../../assets/sounds/welcome.mp3"),
       );
       await welcome.playAsync();
-      welcome.unloadAsync();
 
+      // Reproducir sonido específico del usuario
       let usuarioAudio;
       switch (usuario) {
         case "Facundo":
@@ -42,45 +39,86 @@ function Controlador() {
       }
 
       if (usuarioAudio) {
-        welcome.setOnPlaybackStatusUpdate(async (status) => {
-          const { sound: userSound } =
-            await Audio.Sound.createAsync(usuarioAudio);
-
-          if (status.didJustFinish) {
-            await userSound.playAsync();
-            userSound.unloadAsync();
-          }
-        });
+        const { sound: userSound } =
+          await Audio.Sound.createAsync(usuarioAudio);
+        await userSound.playAsync();
+        userSound.unloadAsync();
       }
+
+      welcome.unloadAsync(); // Liberar el sonido de bienvenida
     } catch (error) {
       console.error("Error al reproducir el audio:", error);
     }
+  };
+
+  // Funciones para abrir y cerrar las interfaces
+  const abrirABMComida = () => {
+    setVerComida(true);
+    setVerCancelar(true);
+    playSound("Facundo");
   };
 
   const abrirABMComic = () => {
     setVerComic(true);
     setVerCancelar(true);
   };
+
   const cancelar = () => {
     setVerCancelar(false);
     setVerComida(false);
     setVerComic(false);
-    Vibration.vibrate(20);
+    Vibration.vibrate(20); // Vibración al cancelar
   };
+
   return (
-    <View>
-      {verCancelar && <Button title="Cancelar" onPress={cancelar} />}
+    <View style={styles.container}>
+      {/* Botón de cancelar (condicional) */}
+      {verCancelar && (
+        <CustomButton title="Cancelar" onPress={cancelar} color="#ff4444" />
+      )}
+
+      {/* Botones principales (condicional) */}
       {!verCancelar && (
         <>
-          <Button title="ABM COMIDAS" onPress={abrirABMComida} />
-          <Button title="ABM COMICS" onPress={abrirABMComic} />
+          <CustomButton
+            title="ABM COMIDAS"
+            onPress={abrirABMComida}
+            color="#6200ee"
+          />
+          <CustomButton
+            title="ABM COMICS"
+            onPress={abrirABMComic}
+            color="#009688"
+          />
         </>
       )}
 
+      {/* Interfaces ABM (condicionales) */}
       {verComida && <ABMComida />}
       {verComic && <ABMComic />}
     </View>
   );
 }
+
+// Componente reutilizable para botones
+const CustomButton = ({ title, onPress, color }) => (
+  <View style={styles.buttonContainer}>
+    <Button title={title} onPress={onPress} color={color} />
+  </View>
+);
+
+// Estilos
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#f5f5f5",
+  },
+  buttonContainer: {
+    marginVertical: 10,
+    width: "80%",
+  },
+});
 
 export default Controlador;

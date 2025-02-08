@@ -6,6 +6,10 @@ import Formulario_Comic_A from "./A-Comida";
 import Formulario_Comic_B from "./B-Comida";
 import Formulario_Comic_M from "./M-Comida";
 
+//Componentes
+import Ventana from "../../../../components/Ventana";
+import Comics from "../../../../jsons/comics.json";
+
 const ABMComic = () => {
   const [isVisibleaA, setVisibleA] = useState(false);
   const [isVisibleaB, setVisibleB] = useState(false);
@@ -27,6 +31,14 @@ const ABMComic = () => {
       <Formulario_Comic_M
         visible={isVisibleaM}
         onClose={() => setVisibleA(false)}
+      />
+
+      <Ventana
+        data={Comics}
+        ancho={300}
+        alto={200}
+        backgroundColor={"white"}
+        color={"black"}
       />
     </View>
   );
