@@ -11,6 +11,8 @@ import Credenciales from "./Credenciales.json";
 import Controlador from "./Controlador";
 import { Audio } from "expo-av";
 import { ImageBackground } from "expo-image";
+import { useFonts } from "expo-font";
+import BetterButton from "../../components/BetterButton";
 
 const wallpaper = require("../../assets/admin/matrix.gif");
 
@@ -21,6 +23,9 @@ function Control() {
   const [modal, setModal] = useState(true);
   const [sonido, setSonido] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [fontLoad] = useFonts({
+    comic: require("../../assets/fonts/Rethogen Atomics.otf"),
+  });
 
   // Función para cargar y reproducir sonidos
   const cargarYReproducirSonido = async (nombre) => {
@@ -110,10 +115,14 @@ function Control() {
           {loading ? (
             <ActivityIndicator size="small" color="#0000ff" />
           ) : (
-            <Button
+            <BetterButton
               title="Ingresar"
               onPress={verificarCredencial}
               disabled={loading}
+              textColor={"rgb(94, 255, 0)"}
+              borderColor={"rgb(94, 255, 0)"}
+              backgroundColor={"black"}
+              fontFamily={"comic"}
             />
           )}
           {error && (
@@ -162,6 +171,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: "center",
     backgroundColor: "rgb(0, 0, 0)",
+  },
+  button: {
+    textColor: "rgb(94, 255, 0)",
   },
 });
 

@@ -88,7 +88,7 @@ function Controlador() {
           <CustomButton
             title="ABM COMICS"
             onPress={abrirABMComic}
-            color="#009688"
+            color="rgb(0,0,0)"
           />
         </>
       )}
@@ -113,11 +113,13 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     padding: 20,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "rgb(0,0,0)",
   },
   buttonContainer: {
     marginVertical: 10,
     width: "80%",
+    borderColor: "rgb(0, 255, 0)",
+    color: "black",
   },
 });
 
