@@ -2,17 +2,16 @@ import React, { useEffect, useState } from "react";
 import {
   Text,
   TextInput,
-  Button,
   View,
   ActivityIndicator,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 import Credenciales from "./Credenciales.json";
 import Controlador from "./Controlador";
 import { Audio } from "expo-av";
 import { ImageBackground } from "expo-image";
-import { useFonts } from "expo-font";
-import BetterButton from "../../components/BetterButton";
+import { Ionicons } from "@expo/vector-icons";
 
 const wallpaper = require("../../assets/admin/matrix.gif");
 
@@ -23,9 +22,6 @@ function Control() {
   const [modal, setModal] = useState(true);
   const [sonido, setSonido] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [fontLoad] = useFonts({
-    comic: require("../../assets/fonts/Rethogen Atomics.otf"),
-  });
 
   // Función para cargar y reproducir sonidos
   const cargarYReproducirSonido = async (nombre) => {
@@ -115,14 +111,11 @@ function Control() {
           {loading ? (
             <ActivityIndicator size="small" color="#0000ff" />
           ) : (
-            <BetterButton
+            <CustomButton
               title="Ingresar"
               onPress={verificarCredencial}
               disabled={loading}
-              textColor={"rgb(94, 255, 0)"}
-              borderColor={"rgb(94, 255, 0)"}
-              backgroundColor={"black"}
-              fontFamily={"comic"}
+              color={"rgb(94, 255, 0)"}
             />
           )}
           {error && (
@@ -135,6 +128,44 @@ function Control() {
     </View>
   );
 }
+
+const CustomButton = ({ title, onPress, color }) => {
+  const styles = StyleSheet.create({
+    glowingContainer: {
+      width: 300,
+      padding: 20, // Más espacio para la sombra
+      borderRadius: 50, // Redondeado para un glow más visible
+
+      // 💡 Ajustando el brillo extremo
+      shadowColor: "rgb(255, 0, 0)", // Color rojo fuerte
+      shadowOffset: { width: 0, height: 0 }, // Sin desplazamiento
+      shadowOpacity: 1, // 🔥 Intensidad total
+      shadowRadius: 50, // 🔥🔥🔥 Hace el glow más grande
+      elevation: 50, // En Android, aumenta la sombra
+    },
+
+    button: {
+      backgroundColor: "black",
+      padding: 15,
+      borderRadius: 50,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+
+    text: {
+      fontSize: 16,
+      fontWeight: "bold",
+    },
+  });
+  return (
+    <TouchableOpacity onPress={onPress} style={[styles.glowingContainer]}>
+      <View style={styles.button}>
+        <Ionicons name="arrow-up-circle" size={24} color={color} />
+        <Text style={[styles.text, { color }]}>{title}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};
 
 // Estilos centralizados con StyleSheet
 const styles = StyleSheet.create({
@@ -159,7 +190,7 @@ const styles = StyleSheet.create({
     height: 40,
     width: 300,
     borderColor: "rgb(255, 255, 255)",
-    borderWidth: 1,
+    borderWidth: 0.5,
     marginBottom: 10,
     paddingHorizontal: 10,
     borderRadius: 5,
@@ -171,9 +202,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     textAlign: "center",
     backgroundColor: "rgb(0, 0, 0)",
-  },
-  button: {
-    textColor: "rgb(94, 255, 0)",
   },
 });
 
