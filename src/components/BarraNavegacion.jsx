@@ -21,11 +21,19 @@ export default function BarraNavegacion() {
   console.log("Barra de Secciones Funcionando! 🔍");
 
   const playSound = async () => {
-    // Cargar y reproducir el sonido
     const { sound } = await Audio.Sound.createAsync(
       require("../assets/sounds/secreto.mp3"),
     );
+
+    // Reproducir sonido
     await sound.playAsync();
+
+    // Esperar a que termine
+    sound.setOnPlaybackStatusUpdate((status) => {
+      if (status.didJustFinish) {
+        sound.unloadAsync(); // Descargar de memoria cuando termina
+      }
+    });
   };
 
   // Función para manejar los toques en Intro
