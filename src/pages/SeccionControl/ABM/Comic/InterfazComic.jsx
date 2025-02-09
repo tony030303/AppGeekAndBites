@@ -5,6 +5,9 @@ import { useState } from "react";
 import Formulario_Comic_A from "./A-Comic";
 import Formulario_Comic_B from "./B-Comic";
 import Formulario_Comic_M from "./M-Comic";
+//Componentes
+import Ventana from "../../../../components/Ventana";
+import Comics from "../../../../jsons/comics.json";
 
 const ABMComic = () => {
   const [isVisibleaA, setVisibleA] = useState(false);
@@ -27,6 +30,14 @@ const ABMComic = () => {
       <Formulario_Comic_M
         visible={isVisibleaM}
         onClose={() => setVisibleM(false)}
+      />
+
+      <Ventana
+        data={Comics}
+        ancho={300}
+        alto={200}
+        backgroundColor={"white"}
+        color={"black"}
       />
     </View>
   );

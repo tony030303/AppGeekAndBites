@@ -10,8 +10,20 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
 
   // Actualizar el estado interno cuando cambia la prop `visible`
   useEffect(() => {
+    if (!visible) {
+      setDatos({ title: "", year: "" }); // Resetear formulario
+    }
     setIsVisible(visible);
   }, [visible]);
+
+  const subirComic = () => {
+    if (!datos.title.trim() || !datos.year.trim()) {
+      alert("Por favor, completa todos los campos.");
+      return;
+    }
+    console.log("Datos:", datos);
+  };
+
 
   return (
     <Modal visible={isVisible}>
@@ -29,7 +41,7 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
         }
         placeholder="Año"
       />
-      <Button title="Subir" onPress={() => console.log("Datos:", datos)} />
+      <Button title="Subir" onPress={subirComic} />
       <Button title="Cancelar" onPress={onClose} />
     </Modal>
   );
