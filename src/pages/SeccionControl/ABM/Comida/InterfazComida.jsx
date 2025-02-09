@@ -26,11 +26,11 @@ const ABMComic = () => {
       />
       <Formulario_Comic_B
         visible={isVisibleaB}
-        onClose={() => setVisibleA(false)}
+        onClose={() => setVisibleB(false)}
       />
       <Formulario_Comic_M
         visible={isVisibleaM}
-        onClose={() => setVisibleA(false)}
+        onClose={() => setVisibleM(false)}
       />
 
       <Ventana
