@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { Modal, TextInput, StyleSheet, Text } from "react-native";
-import ImageInput from "../../../../components/ImageInput";
 import { View } from "react-native-animatable";
 import CustomizableButton from "../../../../components/CustomizableButton";
 import SoundButton from "../../../../components/SoundButton";
@@ -10,13 +9,25 @@ import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
 const Formulario_Comida_B = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
   const [nombre, setNombre] = useState("");
-  const [year, setYear] = useState("");
+  
 
   // Actualizar el estado interno cuando cambia la prop `visible`
   useEffect(() => {
+    if (!visible) {
+      setNombre(""); // Resetear formulario
+    }
+    //lo que estaba
     setIsVisible(visible);
   }, [visible]);
 
+  //Validación de datos
+  const verificarComida = () => {
+    if (!nombre.trim()) {
+      alert("Por favor, completa todos los campos!!!!!");
+      return;
+    }
+    console.log("Comida eliminada con id :", nombre);
+  };
   return (
     <Modal visible={isVisible} animationType={"fade"}>
       <View style={styles.container}>
@@ -33,7 +44,7 @@ const Formulario_Comida_B = ({ visible, onClose }) => {
 
         <CustomizableButton
           title="Eliminar"
-          onPress={() => {}}
+          onPress={verificarComida}
           style={styles.button}
         />
 

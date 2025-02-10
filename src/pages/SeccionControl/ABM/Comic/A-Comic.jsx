@@ -1,30 +1,75 @@
 import { useState, useEffect } from "react";
 import { Modal, TextInput, StyleSheet, Text } from "react-native";
-import ImageInput from "../../../../components/ImageInput";
+import ImageInput from "../../../../components/ImageInput"; // Asegúrate de que ImageInput esté configurado correctamente
 import { View } from "react-native-animatable";
 import CustomizableButton from "../../../../components/CustomizableButton";
 import SoundButton from "../../../../components/SoundButton";
-
 import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
 
 const Formulario_Comida_A = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
   const [nombre, setNombre] = useState("");
   const [year, setYear] = useState("");
+  const [cover, setCover] = useState(null); // Para manejar la portada del cómic
 
   // Actualizar el estado interno cuando cambia la prop `visible`
-
   useEffect(() => {
+    if (!visible) {
+      setNombre(""); // Resetear formulario
+      setYear("");
+      setCover(null); // Resetear la imagen
+    }
     setIsVisible(visible);
   }, [visible]);
+
+   // Función para manejar la imagen seleccionada
+  const handleImageSelected = (uri) => {
+    setCover(uri);
+  };
+
+  //Validación de datos y envío de datos al servidor
+  const verificarComic = async () => {
+    if (!nombre.trim() || !year.trim()) {
+      alert("Por favor, completa todos los campos!");
+      return;
+    }
+
+    const newComic = {
+      title: nombre,
+      year,
+      //cover, 
+    };
+
+    try {
+      const response = await fetch("http://192.168.0.218:5000/api/comics", { //pongan su ip local, porque sino no funciona..
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newComic),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Cómic agregado correctamente!");
+        setNombre("");
+        setYear("");
+        setCover(null); 
+      } else {
+        alert(`Error: ${data.error}`);
+      }
+    } catch (error) {
+      console.error("Error al enviar los datos:", error);
+      alert("Hubo un problema al conectar con el servidor.");
+    }
+  };
 
   return (
     <Modal visible={isVisible} animationType={"fade"}>
       <View style={styles.container}>
         <View style={{ marginTop: 50 }}>
-          <Text style={{ color: "white", marginLeft: 10 }}>
-            Nombre del Comic
-          </Text>
+          <Text style={{ color: "white", marginLeft: 10 }}>Nombre del Comic</Text>
           <TextInput
             style={styles.textInput}
             value={nombre}
@@ -48,13 +93,13 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
           <Text style={{ color: "white", marginLeft: 10 }}>Tapa del Comic</Text>
           <ImageInput
             style={styles.imageInput}
-            onImageSelected={(uri) => console.log("Imagen seleccionada:", uri)}
+            onImageSelected={handleImageSelected} // Actualiza el estado cuando se selecciona una imagen
           />
         </View>
 
         <CustomizableButton
           title="Subir"
-          onPress={onClose}
+          onPress={verificarComic}
           style={styles.button}
         />
 
@@ -77,12 +122,12 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(0,0,0)",
   },
   imageInput: {
-    width: 200, // 🔥 Cambia el ancho
-    height: 50, // 🔥 Cambia el alto
-    backgroundColor: "black", // 🔥 Color de fondo
-    borderColor: "lime", // 🔥 Color del borde
-    borderWidth: 0.5, // 🔥 Grosor del borde
-    color: "white", // 🔥 Color del texto
+    width: 200, // Ajusta el tamaño
+    height: 50, // Ajusta el tamaño
+    backgroundColor: "black",
+    borderColor: "lime",
+    borderWidth: 0.5,
+    color: "white",
     margin: 10,
   },
   textInput: {
@@ -108,6 +153,7 @@ const styles = StyleSheet.create({
 });
 
 export default Formulario_Comida_A;
+
 
 // {
 //   "id": 2,

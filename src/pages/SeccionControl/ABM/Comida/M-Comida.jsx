@@ -14,6 +14,11 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
 
   // Actualizar el estado interno cuando cambia la prop `visible`
   useEffect(() => {
+    if (!visible) {
+      setNombre(""); // Resetear formulario
+      setYear("");
+    }
+    //lo que estaba
     setIsVisible(visible);
   }, [visible]);
 
@@ -44,7 +49,7 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
             ]}
             value={year}
             onChangeText={setYear}
-            placeholder="Año"
+            placeholder="Descripción"
             placeholderTextColor={"gray"}
           />
         </View>

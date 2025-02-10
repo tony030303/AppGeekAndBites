@@ -14,8 +14,14 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
 
   // Actualizar el estado interno cuando cambia la prop `visible`
   useEffect(() => {
+    if (!visible) {
+      setNombre(""); // Resetear formulario
+      setYear("");
+    }
+    //lo que estaba
     setIsVisible(visible);
   }, [visible]);
+
 
   return (
     <Modal visible={isVisible} animationType={"fade"}>

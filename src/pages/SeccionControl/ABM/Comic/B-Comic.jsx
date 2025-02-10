@@ -9,12 +9,24 @@ import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
 const Formulario_Comic_B = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
   const [nombre, setNombre] = useState("");
-  const [year, setYear] = useState("");
+
 
   // Actualizar el estado interno cuando cambia la prop `visible`
   useEffect(() => {
+    if (!visible) {
+      setNombre(""); // Resetear formulario      
+    };
+    //lo que estaba
     setIsVisible(visible);
   }, [visible]);
+
+  const verificarComic = () => {
+    if (!nombre.trim()) {
+      alert("Por favor, completa todos los campos!!!!!");
+      return;
+    }
+    console.log("Comic eliminado con id: ", nombre);
+  };
 
   return (
     <Modal visible={isVisible} animationType={"fade"}>
@@ -32,7 +44,7 @@ const Formulario_Comic_B = ({ visible, onClose }) => {
 
         <CustomizableButton
           title="Eliminar"
-          onPress={() => {}}
+          onPress={verificarComic}
           style={styles.button}
         />
 
