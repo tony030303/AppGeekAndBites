@@ -14,9 +14,6 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
 
   // Actualizar el estado interno cuando cambia la prop `visible`
   useEffect(() => {
-    if (!visible) {
-      setDatos({ title: "", year: "" }); // Resetear formulario
-    }
     setIsVisible(visible);
   }, [visible]);
 
