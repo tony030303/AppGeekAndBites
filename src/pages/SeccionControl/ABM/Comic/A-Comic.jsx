@@ -22,7 +22,7 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
     setIsVisible(visible);
   }, [visible]);
 
-   // Función para manejar la imagen seleccionada
+  // Función para manejar la imagen seleccionada
   const handleImageSelected = (uri) => {
     setCover(uri);
   };
@@ -34,19 +34,24 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
       return;
     }
 
-    const newComic = {
-      title: nombre,
-      year,
-      //cover, 
-    };
+    const formData = new FormData();
+    formData.append("title", nombre);
+    formData.append("year", year);
+    formData.append("cover", {
+      uri: cover,
+      type: "image/jpeg", // Ajusta el tipo según el formato
+      name: "comic_cover.jpg",
+    });
 
     try {
-      const response = await fetch("http://192.168.0.218:5000/api/comics", { //pongan su ip local, porque sino no funciona..
+      const response = await fetch("http://192.168.0.20:5000/api/comics", {
+        //pongan su ip local, porque sino no funciona..
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data", //"application/json",
         },
-        body: JSON.stringify(newComic),
+        body: formData,
+        //body: JSON.stringify(newComic),
       });
 
       const data = await response.json();
@@ -55,7 +60,7 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
         alert("Cómic agregado correctamente!");
         setNombre("");
         setYear("");
-        setCover(null); 
+        setCover(null);
       } else {
         alert(`Error: ${data.error}`);
       }
@@ -69,7 +74,9 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
     <Modal visible={isVisible} animationType={"fade"}>
       <View style={styles.container}>
         <View style={{ marginTop: 50 }}>
-          <Text style={{ color: "white", marginLeft: 10 }}>Nombre del Comic</Text>
+          <Text style={{ color: "white", marginLeft: 10 }}>
+            Nombre del Comic
+          </Text>
           <TextInput
             style={styles.textInput}
             value={nombre}
@@ -153,7 +160,6 @@ const styles = StyleSheet.create({
 });
 
 export default Formulario_Comida_A;
-
 
 // {
 //   "id": 2,

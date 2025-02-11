@@ -6,7 +6,7 @@ const app = express();
 const PORT = 5000; //puerto
 
 //Ruta absoluta al archivo comics.json
-const comicsFilePath = path.join(__dirname, "../src/jsons/comics.json"); 
+const comicsFilePath = path.join(__dirname, "../src/jsons/comics.json");
 
 // Habilitación de CORS para permitir solicitudes de otros dominios (frontend)
 app.use(cors()); //habilita CORS
@@ -19,6 +19,6 @@ const routerComics = require("./routers/comicsRouter");
 app.use("/api", routerComics);
 
 // Iniciar servidor
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
 });
