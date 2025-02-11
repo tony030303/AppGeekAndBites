@@ -32,4 +32,5 @@ export const imageMap = {
   "comic28.png": require("./comics/comic28.png"),
   "comic29.png": require("./comics/comic29.png"),
   "comic30.png": require("./comics/comic30.png"),
+  "1739283882123.jpg": require("./comics/1739283882123.jpg"),
 };

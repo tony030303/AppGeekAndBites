@@ -4,6 +4,10 @@ import ComicCard from "../components/ComicCard";
 import comicsData from "../jsons/comics.json";
 import { imageMap } from "../assets/imageMap";
 
+//CAMBIO EN COMICSLIST ---> QUIERO PROBAR SI PUEDE CARGAR IMAGENES DESDE EL SERVER
+
+
+
 const PAGE_SIZE = 2;
 
 const ComicsList = () => {
@@ -29,6 +33,7 @@ const ComicsList = () => {
     const newComics = comicsData.slice(start, end).map((comic) => ({
       ...comic,
       cover: imageMap[comic.cover],
+        
     }));
 
     setComics((prevComics) => [...prevComics, ...newComics]);

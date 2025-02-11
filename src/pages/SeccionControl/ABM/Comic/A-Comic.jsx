@@ -45,7 +45,7 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
 
     try {
       const response = await fetch("http://192.168.0.218:5000/api", {
-        //pongan su ip local, porque sino no funciona..
+        //pongan su ip local, porque sino no funciona!!..
         method: "POST",
         headers: {
           "Content-Type": "multipart/form-data", //"application/json",
