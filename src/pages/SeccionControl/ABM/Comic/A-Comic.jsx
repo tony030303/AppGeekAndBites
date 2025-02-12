@@ -62,11 +62,11 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
         setYear("");
         setCover(null);
       } else {
-        alert(`Error: ${data.error}`);
+        alert(`Error: ${data.message}`);
       }
     } catch (error) {
       console.error("Error al enviar los datos:", error);
-      alert("Hubo un problema al conectar con el servidor ó no se cumplieron los requisitos al enviar los datos.");
+      alert("Hubo un problema al conectar con el servidor");
     }
   };
 

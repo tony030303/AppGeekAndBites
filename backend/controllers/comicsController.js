@@ -18,7 +18,7 @@ const createOneComic = (req, res) => {
     const comicCreado = comicsServicio.createOneComic({ title, year, cover });
     return res.status(200).json({ status: "OK", data: comicCreado });  
   } catch (error) {
-    return res.status(404).json({ status: "Error", message: "No se pudo crear el cómic" });  
+    return res.status(404).json({ status: "Error", message: error.message});  
   }
 };
 
