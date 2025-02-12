@@ -56,7 +56,7 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
             style={styles.textInput}
             value={year}
             onChangeText={setYear}
-            placeholder="Año"
+            placeholder="Año (ingresá solo valores númericos)"
             placeholderTextColor={"gray"}
           />
         </View>

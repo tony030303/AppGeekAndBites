@@ -66,7 +66,7 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
       }
     } catch (error) {
       console.error("Error al enviar los datos:", error);
-      alert("Hubo un problema al conectar con el servidor.");
+      alert("Hubo un problema al conectar con el servidor ó no se cumplieron los requisitos al enviar los datos.");
     }
   };
 
@@ -92,7 +92,7 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
             style={styles.textInput}
             value={year}
             onChangeText={setYear}
-            placeholder="Año"
+            placeholder="Año (ingresá solo valores númericos)"
             placeholderTextColor={"gray"}
           />
         </View>
