@@ -1,5 +1,5 @@
 //Clase Comic
-//Se comunica directamente con la BD
+//Se comunica directamente con el comics.json
 
 const fs = require("fs");
 const path = require("path");
@@ -26,12 +26,14 @@ const readData = () => {
   }
 };
 
+//obtener todos los cómics
 const getAllComics = () => {
   const file = readData();
   return file;
 };
 
 
+//crear un cómic
 const createOneComic = (body) => {
   
   const file = readData();
@@ -74,4 +76,19 @@ const actualizarImageMap = (coverName) => {
   }
 };
 
-module.exports = { getAllComics, createOneComic };
+//eliminar un cómic
+
+const deleteOneComic = (id) => {
+  const comics = readData();
+  const unComic = comics.find(comic => comic.id === id); //lo extraigo
+  const pos = comics.indexOf(unComic); //busco la pos del comic
+  var exito = 0;
+  if(pos >= 0){ //si esta en una pos válida
+    comics.splice(pos,1); //borra al cómic de esa pos
+    escribirDatos(comics);
+    exito = 1; //lo pudo hacer correctamente
+  }
+  return exito;
+};
+
+module.exports = { getAllComics, createOneComic, deleteOneComic };

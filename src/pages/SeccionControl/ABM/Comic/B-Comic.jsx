@@ -20,12 +20,33 @@ const Formulario_Comic_B = ({ visible, onClose }) => {
     setIsVisible(visible);
   }, [visible]);
 
-  const verificarComic = () => {
+  const verificarComic = async () => {
     if (!id.trim()) {
       alert("Por favor, completa todos los campos!!!!!");
       return;
     }
-    console.log("Comic eliminado con id: ", id);
+
+    try {
+      const response = await fetch(`http://192.168.0.218:5000/comics/${id}`, {
+        //pongan su ip local, porque sino no funciona!!..
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Cómic eliminado correctamente!");
+        setId(""); 
+      } else {
+        alert(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      console.error("Error al enviar los datos:", error);
+      alert("Hubo un problema al conectar con el servidor");
+    }
   };
 
   return (

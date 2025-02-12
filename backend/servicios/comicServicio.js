@@ -26,4 +26,10 @@ const createOneComic = (comicData) => {
   return nuevoComic;
 };
 
-module.exports = { getAllComics, createOneComic };
+const deleteOneComic = (id) => {
+  const unComic = comicDB.deleteOneComic(id);
+  return unComic;
+
+}
+
+module.exports = { getAllComics, createOneComic, deleteOneComic };
