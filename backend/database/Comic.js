@@ -91,4 +91,23 @@ const deleteOneComic = (id) => {
   return exito;
 };
 
-module.exports = { getAllComics, createOneComic, deleteOneComic };
+const updateOneComic = (id,body) => {
+  const comics = readData();
+  const pos = comics.findIndex(comic => comic.id === id);//obtengo la pos del cómic dado
+
+  var exito = 0;
+
+  if(pos >= 0){ //pos valida
+    //si se encontro, actualiza el cómic con los datos proporcionados
+    comics[pos] = {
+      ...comics[pos],
+      ...body,
+    };
+    escribirDatos(comics); //modifico el json
+    exito = 1; //op. exitosa
+
+  }
+  return exito;
+};
+
+module.exports = { getAllComics, createOneComic, deleteOneComic, updateOneComic};

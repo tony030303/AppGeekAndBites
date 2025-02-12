@@ -30,6 +30,28 @@ const deleteOneComic = (id) => {
   const unComic = comicDB.deleteOneComic(id);
   return unComic;
 
-}
+};
 
-module.exports = { getAllComics, createOneComic, deleteOneComic };
+const updateOneComic = (id, body) => {
+  if (!body.year || isNaN(body.year)) {
+    //si no es un número o es un campo vacio
+    throw new Error("El año ingresado no es un valor númerico...");
+  }  
+  const anioActual = new Date().getFullYear();
+
+  if (body.year > anioActual) {
+    throw new Error(
+      `El año ingresado no puede ser mayor que el año  ${anioActual}.`,
+    );
+  }
+  const unComic = comicDB.updateOneComic(id, body);
+  return unComic;
+
+};
+
+module.exports = {
+  getAllComics,
+  createOneComic,
+  deleteOneComic,
+  updateOneComic,
+};

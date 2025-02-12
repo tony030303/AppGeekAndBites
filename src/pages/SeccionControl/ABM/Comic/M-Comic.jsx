@@ -9,6 +9,7 @@ import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
 
 const Formulario_Comic_M = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
+  const [id, setId] = useState("");
   const [nombre, setNombre] = useState("");
   const [year, setYear] = useState("");
 
@@ -17,12 +18,52 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
     if (!visible) {
       setNombre(""); // Resetear formulario
       setYear("");
+      setId("");
     }
     //lo que estaba
     setIsVisible(visible);
   }, [visible]);
 
+  const verificarComic = async () => {
+    if (!id.trim() || (!nombre.trim() && !year.trim())) {
+      alert("Por favor, completa alguno de los campos!");
+      return;
+    }
 
+    // guardo los valores previos (ya que se permite que alguno de los campos este vacio)
+    const valoresPrevios = { title: nombreAnterior, year: yearAnterior };
+
+    // si alguno de lso campos esta vacio, mantengo el valor previo
+    const body = {
+      title: nombre.trim() ? nombre : valoresPrevios.title,
+      year: year.trim() ? year : valoresPrevios.year,
+    };
+
+    try {
+      const response = await fetch(`http://192.168.0.218:5000/comics/put/${id}`, {
+        //pongan su ip local, porque sino no funciona!!..
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert("Cómic actualizado correctamente!");
+        setId("");
+        setNombre("");
+        setYear("");
+      } else {
+        alert(`Error: ${data.message}`);
+      }
+    } catch (error) {
+      console.error("Error al enviar los datos:", error);
+      alert("Hubo un problema al conectar con el servidor");
+    }
+  };
   return (
     <Modal visible={isVisible} animationType={"fade"}>
       <View style={styles.container}>
@@ -30,8 +71,8 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
           <Text style={{ color: "white", marginLeft: 10 }}>ID del Comic</Text>
           <TextInput
             style={styles.textInput}
-            value={nombre}
-            onChangeText={setNombre}
+            value={id}
+            onChangeText={setId}
             placeholder="ID"
             placeholderTextColor={"gray"}
           />
@@ -70,7 +111,7 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
 
         <CustomizableButton
           title="Subir"
-          onPress={onClose}
+          onPress={verificarComic}
           style={styles.button}
         />
 
@@ -124,10 +165,3 @@ const styles = StyleSheet.create({
 });
 
 export default Formulario_Comic_M;
-
-// {
-//   "id": 2,
-//   "title": "Amazing Spider-Man 70",
-//   "year": 1963,
-//   "cover": "comic2.png"
-// },

@@ -160,10 +160,3 @@ const styles = StyleSheet.create({
 });
 
 export default Formulario_Comida_A;
-
-// {
-//   "id": 2,
-//   "title": "Amazing Spider-Man 70",
-//   "year": 1963,
-//   "cover": "comic2.png"
-// },

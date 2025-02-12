@@ -16,22 +16,36 @@ const createOneComic = (req, res) => {
   const cover = req.file ? req.file.filename : null;
   try {
     const comicCreado = comicsServicio.createOneComic({ title, year, cover });
-    return res.status(200).json({ status: "OK", data: comicCreado });  
+    return res.status(200).json({ status: "OK", data: comicCreado });
   } catch (error) {
-    return res.status(404).json({ status: "Error", message: error.message});  
+    return res.status(404).json({ status: "Error", message: error.message });
   }
 };
 
 //eliminar un cómic existente
 
-const deleteOneComic = (req,res) => {
-  const comic_id = parseInt(req.params.id); //obtengo el id desde los parametros del request
+const deleteOneComic = (req, res) => {
+  const comic_id = parseInt(req.params.id); //obtengo el id desde los parámetros del request
   const comicEliminado = comicsServicio.deleteOneComic(comic_id);
-  if(comicEliminado == 1){ //si se eliminó, entonces mando OK
-    res.status(200).send({status: "Comic eliminado"});  
-  }else{ //Sino, ERROR
-    res.status(404).send({status: "Error"});
+  if (comicEliminado == 1) {
+    //si se eliminó, entonces mando OK
+    res.status(200).send({ status: "Comic eliminado" });
+  } else {
+    //Sino, ERROR
+    res.status(404).send({ status: "Error" });
   }
-
 };
-module.exports = { getAllComics, createOneComic, deleteOneComic };
+
+//modificar un cómic existente
+
+const updateOneComic = (req, res) => {
+  const comic_id = parseInt(req.params.id); //obtengo el id desde los parámetros del request
+  const comic_body = req.body; //cuerpo de la solicitud
+  const comicActualizado = comicsServicio.updateOneComic(comic_id, comic_body);
+  if (comicActualizado === 0) {
+    res.status(404).send({ status: "Error" });
+  } else {
+    res.status(200).send({ status: "Comic actualizado" });
+  }
+};
+module.exports = { getAllComics, createOneComic, deleteOneComic, updateOneComic };
