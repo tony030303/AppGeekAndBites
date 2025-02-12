@@ -8,24 +8,24 @@ import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
 
 const Formulario_Comic_B = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
-  const [nombre, setNombre] = useState("");
+  const [id, setId] = useState("");
 
 
   // Actualizar el estado interno cuando cambia la prop `visible`
   useEffect(() => {
     if (!visible) {
-      setNombre(""); // Resetear formulario      
+      setId(""); // Resetear formulario      
     };
     //lo que estaba
     setIsVisible(visible);
   }, [visible]);
 
   const verificarComic = () => {
-    if (!nombre.trim()) {
+    if (!id.trim()) {
       alert("Por favor, completa todos los campos!!!!!");
       return;
     }
-    console.log("Comic eliminado con id: ", nombre);
+    console.log("Comic eliminado con id: ", id);
   };
 
   return (
@@ -35,8 +35,8 @@ const Formulario_Comic_B = ({ visible, onClose }) => {
           <Text style={{ color: "white", marginLeft: 10 }}>ID del Comic</Text>
           <TextInput
             style={styles.textInput}
-            value={nombre}
-            onChangeText={setNombre}
+            value={id}
+            onChangeText={setId}
             placeholder="id del Comic"
             placeholderTextColor={"gray"}
           />

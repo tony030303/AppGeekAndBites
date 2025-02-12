@@ -44,7 +44,7 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
     });
 
     try {
-      const response = await fetch("http://192.168.0.218:5000/api", {
+      const response = await fetch("http://192.168.0.218:5000/comics", {
         //pongan su ip local, porque sino no funciona!!..
         method: "POST",
         headers: {
