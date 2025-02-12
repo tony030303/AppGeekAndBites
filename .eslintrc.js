@@ -3,6 +3,7 @@ module.exports = {
   plugins: ["prettier"],
   rules: {
     "prettier/prettier": "error",
+    indent: ["error", 2], //modificando indentación
   },
   ignorePatterns: ["/dist/*"],
 };

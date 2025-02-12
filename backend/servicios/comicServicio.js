@@ -4,11 +4,11 @@
 const comicDB = require("../database/Comic");
 
 const getAllComics = () => {
-    return comicDB.getAllComics();
+  return comicDB.getAllComics();
 };
 
 const createOneComic = (comicData) => {
-    return comicDB.createOneComic(comicData);
+  return comicDB.createOneComic(comicData);
 };
 
 module.exports = { getAllComics, createOneComic };
