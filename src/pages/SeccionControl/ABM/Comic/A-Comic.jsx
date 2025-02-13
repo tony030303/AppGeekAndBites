@@ -5,7 +5,8 @@ import { View } from "react-native-animatable";
 import CustomizableButton from "../../../../components/CustomizableButton";
 import SoundButton from "../../../../components/SoundButton";
 import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
-
+import { agregarComic } from "../../../../services/comics.service";
+import { styles } from "./comic.styles";
 const Formulario_Comida_A = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
   const [nombre, setNombre] = useState("");
@@ -33,43 +34,16 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
       alert("Por favor, completa todos los campos!");
       return;
     }
+    const resultado = await agregarComic(nombre, year, cover); //llama a función que se encarga de hacer el puente backend - frontend
 
-    const formData = new FormData();
-    formData.append("accion", "comics");
-    formData.append("title", nombre);
-    formData.append("year", year);
-    formData.append("cover", {
-      uri: cover,
-      type: "image/jpeg", // Ajusta el tipo según el formato
-      name: "comic_cover.jpg",
-    });
-
-    try {
-      const response = await fetch("http://192.168.0.218:5000/comics", {
-        //pongan su ip local, porque sino no funciona!!..
-        //ip alba: 192.168.0.20
-        //ip tony?: 192.168.0.218
-        method: "POST",
-        headers: {
-          "Content-Type": "multipart/form-data", //"application/json",
-        },
-        body: formData,
-        //body: JSON.stringify(newComic),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("Cómic agregado correctamente!");
-        setNombre("");
-        setYear("");
-        setCover(null);
-      } else {
-        alert(`Error: ${data.message}`);
-      }
-    } catch (error) {
-      console.error("Error al enviar los datos:", error);
-      alert("Hubo un problema al conectar con el servidor");
+    if (resultado.success) {
+      //exito en el resultado
+      alert(resultado.message);
+      setNombre("");
+      setYear("");
+      setCover(null);
+    } else {
+      alert(`Error: ${resultado.message}`);
     }
   };
 
@@ -124,42 +98,5 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    backgroundColor: "rgb(0,0,0)",
-  },
-  imageInput: {
-    width: 200, // Ajusta el tamaño
-    height: 50, // Ajusta el tamaño
-    backgroundColor: "black",
-    borderColor: "lime",
-    borderWidth: 0.5,
-    color: "white",
-    margin: 10,
-  },
-  textInput: {
-    margin: 10,
-    height: 40,
-    width: 300,
-    borderColor: "lime",
-    borderWidth: 0.5,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    borderRadius: 5,
-    backgroundColor: "rgb(0, 0, 0)",
-    color: "rgb(94, 255, 0)",
-  },
-  button: {
-    marginVertical: 10,
-    width: "100%",
-    borderRadius: 20,
-    backgroundColor: "black",
-    borderColor: "lime",
-    borderWidth: 0.5,
-  },
-});
 
 export default Formulario_Comida_A;

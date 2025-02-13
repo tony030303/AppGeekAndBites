@@ -4,7 +4,8 @@ import { View } from "react-native-animatable";
 import CustomizableButton from "../../../../components/CustomizableButton";
 import SoundButton from "../../../../components/SoundButton";
 import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
-
+import { modificarComic } from "../../../../services/comics.service";
+import { styles } from "./comic.styles";
 //Modificación de cómic por año de publicación.
 const Formulario_Comic_M = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
@@ -15,7 +16,7 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
   useEffect(() => {
     if (!visible) {
       //resetear formulario
-      setYear("");
+      setYear();
       setId("");
     }
     setIsVisible(visible);
@@ -27,30 +28,19 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
       return;
     }
 
-    try {
-      const response = await fetch(`http://192.168.0.218:5000/comics/${id}`, {
-        //pongan su ip local, porque sino no funciona!!..
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ year }),
-      });
+    
+    const resultado = await modificarComic(id, year);
 
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("Cómic actualizado correctamente!");
-        setId("");
-        setYear("");
-      } else {
-        alert(`Error: ${data.message}`);
-      }
-    } catch (error) {
-      console.error("Error al enviar los datos:", error);
-      alert("Hubo un problema al conectar con el servidor");
+    if (resultado.success) {
+      //exito en el resultado
+      alert(resultado.message);
+      setId("");
+      setYear(); //verlo
+    } else {
+      alert(`Error: ${resultado.message}`);
     }
   };
+
   return (
     <Modal visible={isVisible} animationType={"fade"}>
       <View style={styles.container}>
@@ -91,43 +81,5 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
     </Modal>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "flex-start",
-    backgroundColor: "rgb(0,0,0)",
-  },
-  imageInput: {
-    width: 200, // 🔥 Cambia el ancho
-    height: 50, // 🔥 Cambia el alto
-    backgroundColor: "black", // 🔥 Color de fondo
-    borderColor: "lime", // 🔥 Color del borde
-    borderWidth: 0.5, // 🔥 Grosor del borde
-    color: "white", // 🔥 Color del texto
-    margin: 10,
-  },
-  textInput: {
-    margin: 10,
-    height: 40,
-    width: 300,
-    borderColor: "lime",
-    borderWidth: 0.5,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    borderRadius: 5,
-    backgroundColor: "rgb(0, 0, 0)",
-    color: "rgb(94, 255, 0)",
-  },
-  button: {
-    marginVertical: 10,
-    width: "100%",
-    borderRadius: 20,
-    backgroundColor: "black",
-    borderColor: "lime",
-    borderWidth: 0.5,
-  },
-});
 
 export default Formulario_Comic_M;
