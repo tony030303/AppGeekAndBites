@@ -78,5 +78,4 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
   );
 };
 
-
 export default Formulario_Comida_A;

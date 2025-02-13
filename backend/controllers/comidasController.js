@@ -48,7 +48,7 @@ const updateOneComida = (req, res) => {
   const comida_body = req.body; //cuerpo de la solicitud
   const comidaActualizada = comidaServicio.updateOneComida(
     comida_id,
-    comida_body
+    comida_body,
   );
   if (comidaActualizada === 0) {
     res.status(404).send({ status: "Error" });

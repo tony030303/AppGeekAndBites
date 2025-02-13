@@ -48,9 +48,10 @@ const updateOneComic = (req, res) => {
     );
     if (comicActualizado == 1) {
       return res.status(200).send({ status: "OK" });
-    }else{
-      
-      return res.status(404).send({ status: "Error", message: "Cómic no encontrado" });
+    } else {
+      return res
+        .status(404)
+        .send({ status: "Error", message: "Cómic no encontrado" });
     }
   } catch (error) {
     res.status(404).send({ status: "Error", message: error.message });

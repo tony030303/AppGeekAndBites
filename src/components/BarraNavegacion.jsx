@@ -10,6 +10,7 @@ import Comics from "../pages/Section-comics";
 import Contactos from "../pages/Section-contactos";
 // import PruebaBackend from "../pages/pruebaSub";
 import Admin from "../pages/SeccionControl/Section-Control";
+import Controlador from "../pages/SeccionControl/Controlador";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -96,6 +97,7 @@ export default function BarraNavegacion() {
           },
         }}
       />
+
       <Tab.Screen
         name="Comics"
         component={Comics}
@@ -105,9 +107,20 @@ export default function BarraNavegacion() {
           },
         }}
       />
+
       <Tab.Screen
         name="Contactos"
         component={Contactos}
+        listeners={{
+          tabPress: () => {
+            wrongPress(); // Llamar a la función al presionar Intro
+          },
+        }}
+      />
+
+      <Tab.Screen
+        name="ABM"
+        component={Controlador}
         listeners={{
           tabPress: () => {
             wrongPress(); // Llamar a la función al presionar Intro

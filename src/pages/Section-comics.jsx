@@ -1,9 +1,30 @@
 import { StyleSheet, View, Text } from "react-native";
 import { ImageBackground } from "expo-image";
 import ComicsList from "../components/ComicsList";
+import { useEffect, useState } from "react";
+import evento_comic from "../events/evento_comic";
+//contexto
+
 const wallpaper = require("../assets/wallPaper/NeonRoad-03.gif");
 
 export default function Comics() {
+  const [key, setKey] = useState(1);
+
+  useEffect(() => {
+    // Guardar la función de listener
+    const listener = () => {
+      setKey((prevKey) => -prevKey); // Usa una función de actualización segura
+    };
+
+    // Suscribirse al evento
+    evento_comic.addListener("comicModificado", listener);
+
+    // Limpiar la suscripción al desmontar el componente
+    return () => {
+      evento_comic.removeListener("comicModificado", listener);
+    };
+  }, []); // No depende de `key` porque no necesitamos recrear la suscripción
+
   return (
     <>
       <ImageBackground
@@ -14,7 +35,7 @@ export default function Comics() {
         {/*contenedor principal para el contenido sobre la imagen de fondo */}
         <View style={style.container}>
           <Text style={style.heading}>Sección de Cómics</Text>
-          <ComicsList />
+          <ComicsList key={key} />
         </View>
       </ImageBackground>
     </>

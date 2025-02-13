@@ -9,7 +9,6 @@ import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
 const Formulario_Comida_B = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
   const [nombre, setNombre] = useState("");
-  
 
   // Actualizar el estado interno cuando cambia la prop `visible`
   useEffect(() => {

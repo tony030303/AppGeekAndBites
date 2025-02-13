@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { Modal, TextInput, StyleSheet, Text } from "react-native";
+import { Modal, TextInput, Text } from "react-native";
 import { View } from "react-native-animatable";
 import CustomizableButton from "../../../../components/CustomizableButton";
 import SoundButton from "../../../../components/SoundButton";
 import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
 import { modificarComic } from "../../../../services/comics.service";
 import { styles } from "./comic.styles";
+import evento_comic from "../../../../events/evento_comic";
+
 //Modificación de cómic por año de publicación.
 const Formulario_Comic_M = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
@@ -28,11 +30,11 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
       return;
     }
 
-    
     const resultado = await modificarComic(id, year);
 
     if (resultado.success) {
       //exito en el resultado
+      evento_comic.emit("comicModificado");
       alert(resultado.message);
       setId("");
       setYear(); //verlo
@@ -65,6 +67,7 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
             placeholderTextColor={"gray"}
           />
         </View>
+
         <CustomizableButton
           title="Subir"
           onPress={verificarComic}

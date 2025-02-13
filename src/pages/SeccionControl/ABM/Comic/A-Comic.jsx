@@ -7,6 +7,8 @@ import SoundButton from "../../../../components/SoundButton";
 import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
 import { agregarComic } from "../../../../services/comics.service";
 import { styles } from "./comic.styles";
+import evento_comic from "../../../../events/evento_comic";
+
 const Formulario_Comida_A = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
   const [nombre, setNombre] = useState("");
@@ -38,7 +40,8 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
 
     if (resultado.success) {
       //exito en el resultado
-      alert(resultado.message);
+      // alert(resultado.message);
+      evento_comic.emit("comicModificado");
       setNombre("");
       setYear("");
       setCover(null);

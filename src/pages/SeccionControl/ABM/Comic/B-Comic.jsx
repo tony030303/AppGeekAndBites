@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { Modal, TextInput, StyleSheet, Text } from "react-native";
+import { Modal, TextInput, Text } from "react-native";
 import { View } from "react-native-animatable";
 import CustomizableButton from "../../../../components/CustomizableButton";
 import SoundButton from "../../../../components/SoundButton";
 import { eliminarComic } from "../../../../services/comics.service";
 import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
 import { styles } from "./comic.styles";
+import evento_comic from "../../../../events/evento_comic";
+
 const Formulario_Comic_B = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
   const [id, setId] = useState("");
@@ -29,6 +31,7 @@ const Formulario_Comic_B = ({ visible, onClose }) => {
 
     if (resultado.success) {
       //exito en el resultado
+      evento_comic.emit("comicModificado");
       alert(resultado.message);
       setId("");
     } else {
@@ -66,7 +69,5 @@ const Formulario_Comic_B = ({ visible, onClose }) => {
     </Modal>
   );
 };
-
-
 
 export default Formulario_Comic_B;
