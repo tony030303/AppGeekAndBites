@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, FlatList } from "react-native";
-import itemsContactos from "../jsons/itemsContactos";
-import styles from "../styles/style-contactos.jsx";
-import FlipCard from "./FlipCard";
+import itemsContactos from "../../jsons/itemsContactos";
+import { styles } from "./ContactosList.styles.js";
+import FlipCard from "../FlipCard";
 
 const ContactosList = () => {
   return (

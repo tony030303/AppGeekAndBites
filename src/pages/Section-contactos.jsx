@@ -1,6 +1,6 @@
 import React from "react";
 import { ImageBackground } from "expo-image";
-import ContactList from "../components/ContactosList.tsx";
+import ContactList from "../components/ContactosList/ContactosList.tsx";
 import style from "../styles/style-intro.jsx";
 
 // Componentes
