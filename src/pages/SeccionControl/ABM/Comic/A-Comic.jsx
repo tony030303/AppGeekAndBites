@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Modal, TextInput, StyleSheet, Text } from "react-native";
+import { Modal, TextInput, Text } from "react-native";
 import ImageInput from "../../../../components/ImageInput"; // Asegúrate de que ImageInput esté configurado correctamente
 import { View } from "react-native-animatable";
 import CustomizableButton from "../../../../components/CustomizableButton";
@@ -97,6 +97,5 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
     </Modal>
   );
 };
-
 
 export default Formulario_Comida_A;
