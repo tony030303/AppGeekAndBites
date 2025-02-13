@@ -32,7 +32,7 @@ const deleteOneComic = (req, res) => {
     res.status(200).send({ status: "Comic eliminado" });
   } else {
     //Sino, ERROR
-    res.status(404).send({ status: "Error" });
+    res.status(404).send({ status: "Error", message: "Comic no encontrado" });
   }
 };
 
@@ -41,11 +41,24 @@ const deleteOneComic = (req, res) => {
 const updateOneComic = (req, res) => {
   const comic_id = parseInt(req.params.id); //obtengo el id desde los parámetros del request
   const comic_body = req.body; //cuerpo de la solicitud
-  const comicActualizado = comicsServicio.updateOneComic(comic_id, comic_body);
-  if (comicActualizado === 0) {
-    res.status(404).send({ status: "Error" });
-  } else {
-    res.status(200).send({ status: "Comic actualizado" });
+  try {
+    const comicActualizado = comicsServicio.updateOneComic(
+      comic_id,
+      comic_body,
+    );
+    if (comicActualizado == 1) {
+      return res.status(200).send({ status: "OK" });
+    }else{
+      
+      return res.status(404).send({ status: "Error", message: "Cómic no encontrado" });
+    }
+  } catch (error) {
+    res.status(404).send({ status: "Error", message: error.message });
   }
 };
-module.exports = { getAllComics, createOneComic, deleteOneComic, updateOneComic };
+module.exports = {
+  getAllComics,
+  createOneComic,
+  deleteOneComic,
+  updateOneComic,
+};

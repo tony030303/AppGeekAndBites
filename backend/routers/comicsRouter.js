@@ -7,7 +7,7 @@ const path = require("path");
 router.get("/", comicsController.getAllComics); //Obtener todos los cómics
 router.post("/", upload.single("cover"), comicsController.createOneComic); //crear un nuevo cómic
 router.get("/:id", comicsController.deleteOneComic);//eliminar un nuevo cómic (se usa GET para probar en la página web)
-router.put("/put/:id", comicsController.updateOneComic) //actualizar un cómic
+router.put("/:id", comicsController.updateOneComic) //actualizar un cómic
 
 // Servir imágenes estáticas para que React Native pueda acceder a ellas
 //TODO: Ver si tiene que ver algo con esto (por ahora no se está usando..)

@@ -1,52 +1,40 @@
 import { useState, useEffect } from "react";
 import { Modal, TextInput, StyleSheet, Text } from "react-native";
-import ImageInput from "../../../../components/ImageInput";
 import { View } from "react-native-animatable";
 import CustomizableButton from "../../../../components/CustomizableButton";
 import SoundButton from "../../../../components/SoundButton";
-
 import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
 
+//Modificación de cómic por año de publicación.
 const Formulario_Comic_M = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
   const [id, setId] = useState("");
-  const [nombre, setNombre] = useState("");
   const [year, setYear] = useState("");
 
   // Actualizar el estado interno cuando cambia la prop `visible`
   useEffect(() => {
     if (!visible) {
-      setNombre(""); // Resetear formulario
+      //resetear formulario
       setYear("");
       setId("");
     }
-    //lo que estaba
     setIsVisible(visible);
   }, [visible]);
 
   const verificarComic = async () => {
-    if (!id.trim() || (!nombre.trim() && !year.trim())) {
-      alert("Por favor, completa alguno de los campos!");
+    if (!id.trim() || !year.trim()) {
+      alert("Por favor, completá los campos!");
       return;
     }
 
-    // guardo los valores previos (ya que se permite que alguno de los campos este vacio)
-    const valoresPrevios = { title: nombreAnterior, year: yearAnterior };
-
-    // si alguno de lso campos esta vacio, mantengo el valor previo
-    const body = {
-      title: nombre.trim() ? nombre : valoresPrevios.title,
-      year: year.trim() ? year : valoresPrevios.year,
-    };
-
     try {
-      const response = await fetch(`http://192.168.0.218:5000/comics/put/${id}`, {
+      const response = await fetch(`http://192.168.0.218:5000/comics/${id}`, {
         //pongan su ip local, porque sino no funciona!!..
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify({ year }),
       });
 
       const data = await response.json();
@@ -54,7 +42,6 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
       if (response.ok) {
         alert("Cómic actualizado correctamente!");
         setId("");
-        setNombre("");
         setYear("");
       } else {
         alert(`Error: ${data.message}`);
@@ -79,19 +66,6 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
         </View>
 
         <View>
-          <Text style={{ color: "white", marginLeft: 10 }}>
-            Nombre del Comic
-          </Text>
-          <TextInput
-            style={styles.textInput}
-            value={nombre}
-            onChangeText={setNombre}
-            placeholder="Nombre del Comic"
-            placeholderTextColor={"gray"}
-          />
-        </View>
-
-        <View>
           <Text style={{ color: "white", marginLeft: 10 }}>Año</Text>
           <TextInput
             style={styles.textInput}
@@ -101,14 +75,6 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
             placeholderTextColor={"gray"}
           />
         </View>
-        <View>
-          <Text style={{ color: "white", marginLeft: 10 }}>Tapa del Comic</Text>
-          <ImageInput
-            style={styles.imageInput}
-            onImageSelected={(uri) => console.log("Imagen seleccionada:", uri)}
-          />
-        </View>
-
         <CustomizableButton
           title="Subir"
           onPress={verificarComic}
