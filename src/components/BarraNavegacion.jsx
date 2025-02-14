@@ -15,7 +15,7 @@ import Controlador from "../pages/SeccionControl/Controlador";
 const Tab = createMaterialTopTabNavigator();
 
 export default function BarraNavegacion() {
-  const Logo = require("../assets/01-logo.jpeg");
+  const Logo = require("../assets/intro/01-logo.jpeg");
   const [showAdmin, setShowAdmin] = useState(false); // Estado para controlar la visibilidad de Admin
   const [tapCount, setTapCount] = useState(1); // Contador de toques en Intro
 

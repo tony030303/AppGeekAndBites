@@ -16,7 +16,7 @@ import Credi from "../jsons/creditos.json";
 // Galeria
 const images = require("./intro-requires");
 const wallpaper = require("../assets/wallPaper/NeonRoad-01.gif");
-const logo = require("../assets/01-logo.jpeg");
+const logo = require("../assets/intro/01-logo.jpeg");
 
 export default function Intro() {
   const [data, setData] = useState([]);
