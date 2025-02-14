@@ -2,12 +2,17 @@ import { useState, useEffect } from "react";
 import { Modal, TextInput, Text } from "react-native";
 import ImageInput from "../../../../components/ImageInput"; // Asegúrate de que ImageInput esté configurado correctamente
 import { View } from "react-native-animatable";
-import CustomizableButton from "../../../../components/CustomizableButton";
-import SoundButton from "../../../../components/SoundButton";
-import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
+import CustomizableButton from "../../../../components/utils/CustomizableButton";
 import { agregarComic } from "../../../../services/comics.service";
 import { styles } from "./comic.styles";
 import evento_comic from "../../../../events/evento_comic";
+
+//sonidos
+import { playSound } from "../../../../components/utils/emitirSonido";
+import SoundButton from "../../../../components/SoundButton";
+import eliminate from "../../../../assets/sounds/sfx-cancel.mp3";
+import added from "../../../../assets/sounds/sfx-add.mp3";
+import wrong from "../../../../assets/sounds/sfx-error.mp3";
 
 const Formulario_Comida_A = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
@@ -33,6 +38,7 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
   //Validación de datos y envío de datos al servidor
   const verificarComic = async () => {
     if (!nombre.trim() || !year.trim()) {
+      playSound(wrong);
       alert("Por favor, completa todos los campos!");
       return;
     }
@@ -45,6 +51,8 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
       setNombre("");
       setYear("");
       setCover(null);
+      playSound(added);
+      onClose();
     } else {
       alert(`Error: ${resultado.message}`);
     }

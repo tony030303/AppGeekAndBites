@@ -5,7 +5,7 @@ import ABMComic from "./ABM/Comic/InterfazComic";
 import ABMComida from "./ABM/Comida/InterfazComida";
 import SoundButton from "../../components/SoundButton";
 
-import back from "../../assets/sounds/sfx-error.mp3";
+import back from "../../assets/sounds/sfx-cancel.mp3";
 
 function Controlador() {
   const [verComida, setVerComida] = useState(false);

@@ -19,8 +19,6 @@ export default function BarraNavegacion() {
   const [showAdmin, setShowAdmin] = useState(false); // Estado para controlar la visibilidad de Admin
   const [tapCount, setTapCount] = useState(1); // Contador de toques en Intro
 
-  console.log("Barra de Secciones Funcionando! 🔍");
-
   const playSound = async () => {
     const { sound } = await Audio.Sound.createAsync(
       require("../assets/sounds/secreto.mp3"),
@@ -42,8 +40,6 @@ export default function BarraNavegacion() {
     Vibration.vibrate(40);
     if (!showAdmin) {
       setTapCount(tapCount + 1);
-      console.log("tocado " + tapCount);
-
       if (tapCount === 5) {
         setShowAdmin(true); // Mostrar Admin después de 5 toques
         playSound();
@@ -58,7 +54,6 @@ export default function BarraNavegacion() {
   const wrongPress = () => {
     Vibration.vibrate(100);
     if (!showAdmin) {
-      console.log("tocado incorrecto");
       setTapCount(0);
     }
   };

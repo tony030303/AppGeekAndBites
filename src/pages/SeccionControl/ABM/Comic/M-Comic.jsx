@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 import { Modal, TextInput, Text } from "react-native";
 import { View } from "react-native-animatable";
-import CustomizableButton from "../../../../components/CustomizableButton";
-import SoundButton from "../../../../components/SoundButton";
-import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
+import CustomizableButton from "../../../../components/utils/CustomizableButton";
 import { modificarComic } from "../../../../services/comics.service";
 import { styles } from "./comic.styles";
 import evento_comic from "../../../../events/evento_comic";
+
+//sonidos
+import { playSound } from "../../../../components/utils/emitirSonido";
+import SoundButton from "../../../../components/SoundButton";
+import eliminate from "../../../../assets/sounds/sfx-cancel.mp3";
+import modified from "../../../../assets/sounds/sfx-modified.mp3";
+import wrong from "../../../../assets/sounds/sfx-error.mp3";
 
 //Modificación de cómic por año de publicación.
 const Formulario_Comic_M = ({ visible, onClose }) => {
@@ -27,17 +32,19 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
   const verificarComic = async () => {
     if (!id.trim() || !year.trim()) {
       alert("Por favor, completá los campos!");
+      playSound(wrong);
       return;
     }
 
     const resultado = await modificarComic(id, year);
-
     if (resultado.success) {
       //exito en el resultado
-      evento_comic.emit("comicModificado");
       alert(resultado.message);
       setId("");
       setYear(); //verlo
+      evento_comic.emit("comicModificado", { id, year });
+      playSound(modified);
+      onClose();
     } else {
       alert(`Error: ${resultado.message}`);
     }

@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { Modal, TextInput, Text } from "react-native";
 import ImageInput from "../../../../components/ImageInput";
 import { View } from "react-native-animatable";
-import CustomizableButton from "../../../../components/CustomizableButton";
+import CustomizableButton from "../../../../components/utils/CustomizableButton";
 import SoundButton from "../../../../components/SoundButton";
 import { styles } from "./comida.styles";
-import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
+import eliminate from "../../../../assets/sounds/sfx-cancel.mp3";
 
 const Formulario_Comida_A = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);

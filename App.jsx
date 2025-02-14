@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts } from "expo-font";
@@ -9,7 +9,6 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import BarraNavegacion from "./src/components/BarraNavegacion";
 
 export default function App() {
-  console.log("Funcionando! 🚀");
   const [fontLoad] = useFonts({
     comic: require("./src/assets/fonts/Rethogen Atomics.otf"),
   });

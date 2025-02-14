@@ -1,11 +1,5 @@
 [
   {
-    "id": 1,
-    "title": "X-Men: Shattershot",
-    "year": 1993,
-    "cover": "comic1.png"
-  },
-  {
     "id": 2,
     "title": "Amazing Spider-Man 70",
     "year": 1963,
@@ -181,20 +175,8 @@
   },
   {
     "id": 31,
-    "title": "pr9bandoimsdksksk",
-    "year": "2005",
-    "cover": "1739283882123.jpg"
-  },
-  {
-    "id": 32,
-    "title": "Hola",
-    "year": "2002",
-    "cover": "1739400677325.jpg"
-  },
-  {
-    "id": 33,
-    "title": "Www",
-    "year": "2002",
-    "cover": "1739401983035.jpg"
+    "title": "Ustedes",
+    "year": "2003",
+    "cover": "1739573952337.jpg"
   }
 ]

@@ -1,33 +1,16 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import ComicCard from "../components/ComicCard";
-// import comicsData from "../jsons/comics.json";
+import comicsData from "../jsons/comics.json";
 import { imageMap } from "../assets/imageMap";
-// import evento_comic from "../events/evento_comic";
 const PAGE_SIZE = 2;
 
 const ComicsList = () => {
-  const [comicsData, setComicData] = useState(require("../jsons/comics.json"));
+  console.log("cargado ComicList");
   const [comics, setComics] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const isFetchingRef = useRef(isFetching); // Ref para el estado isFetching
   const currentPageRef = useRef(1);
-
-  //EVENTO PERO NO FUNCIONA :(
-  // useEffect(() => {
-  //   // Guardar la función de listener
-  //   const listener = () => {
-  //     setComicData((prevData) => [...prevData]);
-  //   };
-
-  //   // Suscribirse al evento
-  //   evento_comic.addListener("comicModificado", listener);
-
-  //   // Limpiar la suscripción al desmontar el componente
-  //   return () => {
-  //     evento_comic.removeListener("comicModificado", listener);
-  //   };
-  // }, []); // No depende de `key` porque no necesitamos recrear la suscripción
 
   // Sincroniza la ref con el estado real
   useEffect(() => {
@@ -39,7 +22,6 @@ const ComicsList = () => {
     if (isFetchingRef.current) return; // Usa la ref, no el estado directamente
 
     setIsFetching(true);
-
     const start = (currentPageRef.current - 1) * PAGE_SIZE;
     const end = currentPageRef.current * PAGE_SIZE;
 

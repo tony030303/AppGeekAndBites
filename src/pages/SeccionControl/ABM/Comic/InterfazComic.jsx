@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import { useState } from "react";
-import Ventana from "../../../../components/Ventana";
+import Ventana from "../../../../components/utils/Ventana";
 import comics from "../../../../jsons/comics.json";
 import SoundButton from "../../../../components/SoundButton";
 //Partes

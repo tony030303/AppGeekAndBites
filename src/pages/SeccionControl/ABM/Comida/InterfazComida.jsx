@@ -8,7 +8,7 @@ import Formulario_Comida_B from "./B-Comida";
 import Formulario_Comida_M from "./M-Comida";
 
 //Componentes
-import Ventana from "../../../../components/Ventana";
+import Ventana from "../../../../components/utils/Ventana";
 import Comidas from "../../../../jsons/itemsComidas.js";
 
 const ABMComida = () => {

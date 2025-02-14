@@ -3,7 +3,7 @@ import React from "react";
 import SliderPerks from "../components/SliderPerks";
 import itemsComidas from "../jsons/itemsComidas";
 import styleComidas from "../styles/style-comidas";
-import FlipCard from "./FlipCard";
+import FlipCard from "./utils/FlipCard";
 
 const MenuCard = () => {
   return (

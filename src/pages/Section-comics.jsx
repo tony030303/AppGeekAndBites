@@ -14,6 +14,7 @@ export default function Comics() {
     // Guardar la función de listener
     const listener = () => {
       setKey((prevKey) => -prevKey); // Usa una función de actualización segura
+      console.log("reiniciar ComicList");
     };
 
     // Suscribirse al evento
@@ -33,9 +34,9 @@ export default function Comics() {
         contentFit="cover"
       >
         {/*contenedor principal para el contenido sobre la imagen de fondo */}
-        <View style={style.container}>
+        <View key={key} style={style.container}>
           <Text style={style.heading}>Sección de Cómics</Text>
-          <ComicsList key={key} />
+          <ComicsList />
         </View>
       </ImageBackground>
     </>

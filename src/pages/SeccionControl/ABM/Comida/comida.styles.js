@@ -8,12 +8,12 @@ export const styles = StyleSheet.create({
     backgroundColor: "rgb(0,0,0)",
   },
   imageInput: {
-    width: 200, // 🔥 Cambia el ancho
-    height: 50, // 🔥 Cambia el alto
-    backgroundColor: "black", // 🔥 Color de fondo
-    borderColor: "lime", // 🔥 Color del borde
-    borderWidth: 0.5, // 🔥 Grosor del borde
-    color: "white", // 🔥 Color del texto
+    width: 200,
+    height: 50,
+    backgroundColor: "black",
+    borderColor: "lime",
+    borderWidth: 0.5,
+    color: "white",
     margin: 10,
   },
   textInput: {
