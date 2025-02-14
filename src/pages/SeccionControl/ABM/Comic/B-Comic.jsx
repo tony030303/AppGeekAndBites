@@ -44,6 +44,7 @@ const Formulario_Comic_B = ({ visible, onClose }) => {
       onClose();
     } else {
       alert(`Error: ${resultado.message}`);
+      playSound(wrong);
     }
   };
 

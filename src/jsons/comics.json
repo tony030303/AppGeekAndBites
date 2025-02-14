@@ -1,5 +1,11 @@
 [
   {
+    "id": 1,
+    "title": "X-Men: Shattershot",
+    "year": 2002,
+    "cover": "comic1.png"
+  },
+  {
     "id": 2,
     "title": "Amazing Spider-Man 70",
     "year": 1963,

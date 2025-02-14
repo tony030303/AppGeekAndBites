@@ -13,7 +13,7 @@ import eliminate from "../../../../assets/sounds/sfx-cancel.mp3";
 import modified from "../../../../assets/sounds/sfx-modified.mp3";
 import wrong from "../../../../assets/sounds/sfx-error.mp3";
 
-//Modificación de cómic por año de publicación.
+//Modificación de cómic por año de publicacion
 const Formulario_Comic_M = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
   const [id, setId] = useState("");
@@ -47,6 +47,7 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
       onClose();
     } else {
       alert(`Error: ${resultado.message}`);
+      playSound(wrong);
     }
   };
 
