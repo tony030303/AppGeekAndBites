@@ -6,7 +6,7 @@ import { StyleSheet, View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 // Import the TabNavigator
-import BarraNavegacion from "./src/components/BarraNavegacion";
+import BarraNavegacion from "./src/components/BarraNavegacion/BarraNavegacion";
 
 export default function App() {
   const [fontLoad] = useFonts({

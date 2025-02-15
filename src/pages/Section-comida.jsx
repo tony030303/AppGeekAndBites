@@ -1,9 +1,9 @@
 import React from "react";
-import MenuCard from "../components/MenuCard";
+import MenuCard from "../components/MenuCard/MenuCard";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { ImageBackground } from "expo-image";
 import { useFonts } from "expo-font";
-import styleComidas from "../styles/style-comidas";
+import styleComidas from "../components/ListItem/style-comidas";
 
 const wallpaper = require("../assets/wallPaper/NeonRoad-02.gif");
 

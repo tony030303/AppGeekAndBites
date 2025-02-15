@@ -5,9 +5,9 @@ import { ImageBackground } from "expo-image";
 import style from "../styles/style-intro";
 
 // Componentes
-import Filimina from "../components/utils/Filimina";
-import Rotador from "../components/utils/Rotador";
-import RotarPressable from "../components/utils/TouchRotador";
+import Filimina from "../components/Filimina/Filimina";
+import Rotador from "../components/Rotador/Rotador";
+import RotarPressable from "../components/TouchRotador/TouchRotador";
 
 // Jsons
 import Data from "../jsons/indexContent.json";

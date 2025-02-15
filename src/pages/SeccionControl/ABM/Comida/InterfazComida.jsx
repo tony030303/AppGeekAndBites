@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import { useState } from "react";
-import SoundButton from "../../../../components/SoundButton";
+import SoundButton from "../../../../components/SoundButton/SoundButton";
 
 //Partes
 import Formulario_Comida_A from "./A-Comida";
@@ -8,7 +8,7 @@ import Formulario_Comida_B from "./B-Comida";
 import Formulario_Comida_M from "./M-Comida";
 
 //Componentes
-import Ventana from "../../../../components/utils/Ventana";
+import Ventana from "../../../../components/Ventana/Ventana";
 import Comidas from "../../../../jsons/itemsComidas.js";
 
 const ABMComida = () => {

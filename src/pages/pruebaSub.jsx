@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   Modal,
 } from "react-native";
-import SubscriberForm from "../components/SubscriberForm";
+import SubscriberForm from "../components/SubscriberForm/SubscriberForm";
 import { getSubscribers, addSubscriber } from "../services/subscriberService";
 
 //componente principal que muestra la lista de suscriptores y permite agregar nuevos

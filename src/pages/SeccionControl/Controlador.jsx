@@ -3,7 +3,7 @@ import { View, Vibration, StyleSheet } from "react-native";
 
 import ABMComic from "./ABM/Comic/InterfazComic";
 import ABMComida from "./ABM/Comida/InterfazComida";
-import SoundButton from "../../components/SoundButton";
+import SoundButton from "../../components/SoundButton/SoundButton";
 
 import back from "../../assets/sounds/sfx-cancel.mp3";
 

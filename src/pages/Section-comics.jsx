@@ -1,6 +1,6 @@
 import { StyleSheet, View, Text } from "react-native";
 import { ImageBackground } from "expo-image";
-import ComicsList from "../components/ComicsList";
+import ComicsList from "../components/ComicsList/ComicsList";
 import { useEffect, useState } from "react";
 import evento_comic from "../events/evento_comic";
 //contexto

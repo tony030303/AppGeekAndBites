@@ -5,7 +5,7 @@ import { useSharedValue } from "react-native-reanimated";
 
 import comidas from "../jsons/comidas"; //importamos el archivo de comidas
 
-import ListItem from "../components/BlurRotateListItem";
+import ListItem from "../components/BlurRotateListItem/BlurRotateListItem";
 
 const LIST_DATA = comidas;
 

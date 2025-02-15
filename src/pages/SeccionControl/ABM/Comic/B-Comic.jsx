@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import { Modal, TextInput, Text } from "react-native";
 import { View } from "react-native-animatable";
-import CustomizableButton from "../../../../components/utils/CustomizableButton";
+import CustomizableButton from "../../../../components/CustomizableButton/CustomizableButton";
 import { eliminarComic } from "../../../../services/comics.service";
 import { styles } from "./comic.styles";
 import evento_comic from "../../../../events/evento_comic";
 
 //sonidos
-import { playSound } from "../../../../components/utils/emitirSonido";
-import SoundButton from "../../../../components/SoundButton";
+import { playSound } from "../../../../utils/emitirSonido";
+import SoundButton from "../../../../components/SoundButton/SoundButton";
 import cancel from "../../../../assets/sounds/sfx-cancel.mp3";
 import wrong from "../../../../assets/sounds/sfx-error.mp3";
 import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";

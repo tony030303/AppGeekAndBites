@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { Modal, TextInput, Text } from "react-native";
-import ImageInput from "../../../../components/ImageInput";
+import ImageInput from "../../../../components/ImageInput/ImageInput";
 import { View } from "react-native-animatable";
-import CustomizableButton from "../../../../components/utils/CustomizableButton";
-import SoundButton from "../../../../components/SoundButton";
+import CustomizableButton from "../../../../components/CustomizableButton/CustomizableButton";
+import SoundButton from "../../../../components/SoundButton/SoundButton";
 import { styles } from "./comida.styles";
 import eliminate from "../../../../assets/sounds/sfx-cancel.mp3";
 
