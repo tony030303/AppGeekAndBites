@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Text,
 } from "react-native";
-import styles from "../../styles/style-flipcards";
+import styles from "./style-flipcards";
 
 const frenteDefault = ({ mostrarImagen, item }) => {
   return (

@@ -8,10 +8,10 @@ import { Audio } from "expo-av";
 import { style } from "./BarraNavegacion.styles";
 
 // Pages
-import Intro from "../../pages/Section-intro";
-import Comidas from "../../pages/Section-comida";
-import Comics from "../../pages/Section-comics";
-import Contactos from "../../pages/Section-contactos";
+import Intro from "../../pages/Section-intro/Section-intro";
+import Comidas from "../../pages/Section-comida/Section-comida";
+import Comics from "../../pages/Section-comics/Section-comics";
+import Contactos from "../../pages/Section-contactos/Section-contactos";
 // import PruebaBackend from "../pages/pruebaSub";
 import Admin from "../../pages/SeccionControl/Section-Control";
 

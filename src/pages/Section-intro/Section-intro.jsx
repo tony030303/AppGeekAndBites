@@ -2,21 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Text, Image, View, ActivityIndicator } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { ImageBackground } from "expo-image";
-import style from "../styles/style-intro";
+import style from "./style-intro";
 
 // Componentes
-import Filimina from "../components/Filimina/Filimina";
-import Rotador from "../components/Rotador/Rotador";
-import RotarPressable from "../components/TouchRotador/TouchRotador";
+import Filimina from "../../components/Filimina/Filimina";
+import Rotador from "../../components/Rotador/Rotador";
+import RotarPressable from "../../components/TouchRotador/TouchRotador";
 
 // Jsons
-import Data from "../jsons/indexContent.json";
-import Credi from "../jsons/creditos.json";
+import Data from "../../jsons/indexContent.json";
+import Credi from "../../jsons/creditos.json";
 
 // Galeria
 const images = require("./intro-requires");
-const wallpaper = require("../assets/wallPaper/NeonRoad-01.gif");
-const logo = require("../assets/intro/01-logo.jpeg");
+const wallpaper = require("../../assets/wallPaper/NeonRoad-01.gif");
+const logo = require("../../assets/intro/01-logo.jpeg");
 
 export default function Intro() {
   const [data, setData] = useState([]);

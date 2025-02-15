@@ -1,8 +1,10 @@
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { useState } from "react";
 import Ventana from "../../../../components/Ventana/Ventana";
 import comics from "../../../../jsons/comics.json";
 import SoundButton from "../../../../components/SoundButton/SoundButton";
+
+import { styles } from "./InterfazComic.styles";
 //Partes
 import Formulario_Comic_A from "./A-Comic";
 import Formulario_Comic_B from "./B-Comic";
@@ -56,15 +58,3 @@ const ABMComic = () => {
   );
 };
 export default ABMComic;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-  },
-  button: {
-    marginVertical: 10,
-    width: 300,
-    borderRadius: 20,
-  },
-});

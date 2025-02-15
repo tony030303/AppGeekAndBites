@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { View, Vibration, StyleSheet } from "react-native";
-
+import { View, Vibration } from "react-native";
+import { styles } from "./Controlador.styles";
 import ABMComic from "./ABM/Comic/InterfazComic";
 import ABMComida from "./ABM/Comida/InterfazComida";
 import SoundButton from "../../components/SoundButton/SoundButton";
@@ -64,20 +64,5 @@ function Controlador() {
     </View>
   );
 }
-
-// Estilos
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    padding: 20,
-    backgroundColor: "rgb(0,0,0)",
-  },
-  button: {
-    marginVertical: 10,
-    width: "80%",
-    borderRadius: 20,
-  },
-});
 
 export default Controlador;

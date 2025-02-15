@@ -1,23 +1,5 @@
 [
   {
-    "id": 1,
-    "title": "X-Men: Shattershot",
-    "year": 2002,
-    "cover": "comic1.png"
-  },
-  {
-    "id": 2,
-    "title": "Amazing Spider-Man 70",
-    "year": 1963,
-    "cover": "comic2.png"
-  },
-  {
-    "id": 3,
-    "title": "DeadPool 1",
-    "year": 2024,
-    "cover": "comic3.png"
-  },
-  {
     "id": 4,
     "title": "Amazing Fantasy 15",
     "year": 1962,
@@ -26,7 +8,7 @@
   {
     "id": 5,
     "title": "X-Men Vol 1 #100",
-    "year": 1976,
+    "year": 2002,
     "cover": "comic5.png"
   },
   {
@@ -184,5 +166,11 @@
     "title": "Ustedes",
     "year": 2002,
     "cover": "1739573952337.jpg"
+  },
+  {
+    "id": 31,
+    "title": "Ola q hace",
+    "year": "2002",
+    "cover": "1739582311529.jpg"
   }
 ]

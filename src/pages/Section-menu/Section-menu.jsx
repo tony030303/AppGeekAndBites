@@ -3,9 +3,9 @@ import { FlatList } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useSharedValue } from "react-native-reanimated";
 
-import comidas from "../jsons/comidas"; //importamos el archivo de comidas
+import comidas from "../../jsons/comidas"; //importamos el archivo de comidas
 
-import ListItem from "../components/BlurRotateListItem/BlurRotateListItem";
+import ListItem from "../../components/BlurRotateListItem/BlurRotateListItem";
 
 const LIST_DATA = comidas;
 

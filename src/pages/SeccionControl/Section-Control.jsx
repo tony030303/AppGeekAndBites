@@ -7,6 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
+import { styles } from "./Section-Control.styles";
 import Credenciales from "./Credenciales.json";
 import Controlador from "./Controlador";
 import { Audio } from "expo-av";
@@ -133,15 +134,14 @@ const CustomButton = ({ title, onPress, color }) => {
   const styles = StyleSheet.create({
     glowingContainer: {
       width: 300,
-      padding: 20, // Más espacio para la sombra
-      borderRadius: 50, // Redondeado para un glow más visible
+      padding: 20,
+      borderRadius: 50,
 
-      // 💡 Ajustando el brillo extremo
-      shadowColor: "rgb(255, 0, 0)", // Color rojo fuerte
-      shadowOffset: { width: 0, height: 0 }, // Sin desplazamiento
-      shadowOpacity: 1, // 🔥 Intensidad total
-      shadowRadius: 50, // 🔥🔥🔥 Hace el glow más grande
-      elevation: 50, // En Android, aumenta la sombra
+      shadowColor: "rgb(255, 0, 0)",
+      shadowOffset: { width: 0, height: 0 },
+      shadowOpacity: 1,
+      shadowRadius: 50,
+      elevation: 50,
     },
 
     button: {
@@ -166,43 +166,5 @@ const CustomButton = ({ title, onPress, color }) => {
     </TouchableOpacity>
   );
 };
-
-// Estilos centralizados con StyleSheet
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "center",
-    backgroundColor: "black",
-  },
-  container: {
-    flex: 1,
-  },
-  texto: {
-    marginBottom: 20,
-    marginTop: 10,
-    fontSize: 16,
-    textAlign: "center",
-    color: "rgb(255, 255, 255)",
-    backgroundColor: "black",
-  },
-  input: {
-    height: 40,
-    width: 300,
-    borderColor: "rgb(255, 255, 255)",
-    borderWidth: 0.5,
-    marginBottom: 10,
-    paddingHorizontal: 10,
-    borderRadius: 5,
-    backgroundColor: "rgb(0, 0, 0)",
-    color: "rgb(94, 255, 0)",
-  },
-  error: {
-    color: "red",
-    marginTop: 10,
-    textAlign: "center",
-    backgroundColor: "rgb(0, 0, 0)",
-  },
-});
 
 export default Control;

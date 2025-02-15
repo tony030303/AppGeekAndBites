@@ -1,7 +1,7 @@
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { useState } from "react";
 import SoundButton from "../../../../components/SoundButton/SoundButton";
-
+import { styles } from "../Comic/InterfazComic.styles";
 //Partes
 import Formulario_Comida_A from "./A-Comida";
 import Formulario_Comida_B from "./B-Comida";
@@ -59,15 +59,3 @@ const ABMComida = () => {
   );
 };
 export default ABMComida;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-  },
-  button: {
-    marginVertical: 10,
-    width: 300,
-    borderRadius: 20,
-  },
-});
