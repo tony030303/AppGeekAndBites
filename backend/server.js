@@ -18,5 +18,5 @@ app.use("/comidas", routerComidas);
 
 // Iniciar servidor
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server en ejecución: http://192.168.1.139:${PORT}`);
+  console.log(`Server en ejecución: http://localhost:${PORT}`);
 });

@@ -42,7 +42,8 @@ const Formulario_Comic_M = ({ visible, onClose }) => {
       alert(resultado.message);
       setId("");
       setYear(); //verlo
-      evento_comic.emit("comicModificado", { id, year });
+      evento_comic.emit("comicModificado");
+      //evento_comic.emit("comicModificado", { id, year });
       playSound(modified);
       onClose();
     } else {
