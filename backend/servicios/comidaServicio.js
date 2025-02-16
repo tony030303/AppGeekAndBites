@@ -9,7 +9,6 @@ const getAllComidas = () => {
 };
 
 const createOneComida = (comidaData) => {
-  console.log("aca estamos 2");
   if (!comidaData.title) {
     //si no es un string o es un campo vacio
     throw new Error("El titulo ingresado no es valido...");

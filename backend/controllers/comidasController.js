@@ -12,7 +12,6 @@ const getAllComidas = (req, res) => {
 
 //crear una comida
 const createOneComida = (req, res) => {
-  console.log("aca estamos 1");
   const { title, year } = req.body;
   const cover = req.file ? req.file.filename : null;
   try {

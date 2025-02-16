@@ -17,7 +17,6 @@ const escribirDatos = (data) => {
 };
 
 const readData = () => {
-  console.log("aca estamos 4");
   try {
     const data = fs.readFileSync(comidasFilePath, "utf8"); //lee el archivo y lo almacena en data
 
@@ -39,7 +38,6 @@ const getAllComidas = () => {
 
 //crear un comida
 const createOneComida = (body) => {
-  console.log("aca estamos 3");
   const file = readData();
 
   //verificamos que no se encuentre ya
@@ -96,9 +94,29 @@ const deleteOneComida = (nombre) => {
     //si esta en una pos válida
     comidas.splice(pos, 1); //borra a la comida de esa pos
     escribirDatos(comidas);
+
+    eliminarElementoImageMap(unaComida.backgroundImage);
+
     exito = 1; //lo pudo hacer correctamente
   }
   return exito;
+};
+
+//función para eliminar la imagen asociada a una comida en ImageMap
+const eliminarElementoImageMap = (coverName) => {
+  try {
+    let imageMapContent = fs.readFileSync(imageMapPath, "utf8"); //lectura del archivo en la ruta
+
+    // construyo la entrada que deseo eliminar
+    const entrada = `\n  "${coverName}": require("../assets/comidas/${coverName}"),`;
+
+    imageMapContent = imageMapContent.replace(`${entrada}`, "");
+
+    fs.writeFileSync(imageMapPath, imageMapContent, "utf8"); //actualizo el archivo
+    console.log(`Se ha eliminado en imageMap.js : ${coverName}`);
+  } catch (error) {
+    console.error("Error eliminando en imageMap.js", error);
+  }
 };
 
 const updateOneComida = (nombre, body) => {

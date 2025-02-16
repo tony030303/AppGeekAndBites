@@ -7,6 +7,7 @@ import SoundButton from "../../../../components/SoundButton/SoundButton";
 import { styles } from "./comida.styles";
 import eliminate from "../../../../assets/sounds/sfx-cancel.mp3";
 import { modificarComida } from "../../../../services/comida.service";
+import added from "../../../../assets/sounds/sfx-add.mp3";
 
 const Formulario_Comida_A = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
