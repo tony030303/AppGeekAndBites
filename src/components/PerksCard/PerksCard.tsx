@@ -29,43 +29,10 @@ const PerksCard: React.FC<PerksProps> = ({ index, ruta, translateX }) => {
       Extrapolation.CLAMP //En caso de extrapolarse
     );
 
-    // const borderRadius = interpolate(
-    //   translateX.value,
-    //   inputRange,
-    //   [0, SIZE / 2, 0], //Al estar en la pagina sera un circulo, al movernos sera un cuadrado
-    //   Extrapolation.CLAMP, //En caso de extrapolarse
-    // );
-
     return {
-      //borderRadius,
       transform: [{ scale }],
     };
   });
-
-  // const rTextStyle = useAnimatedStyle(() => {
-  //   const translateY = interpolate(
-  //     translateX.value,
-  //     inputRange,
-  //     [height / 2, 0, -height / 2],
-  //     Extrapolation.CLAMP, //En caso de extrapolarse
-  //   );
-
-  //   const opacity = interpolate(
-  //     translateX.value,
-  //     inputRange,
-  //     [-1, 1, -1],
-  //     Extrapolation.CLAMP,
-  //   );
-
-  //   return {
-  //     opacity,
-  //     transform: [
-  //       {
-  //         translateY,
-  //       },
-  //     ],
-  //   };
-  // });
 
   return (
     <View style={perksCardstyles.pageContainer}>
