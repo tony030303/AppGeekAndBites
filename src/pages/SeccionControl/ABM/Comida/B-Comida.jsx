@@ -2,9 +2,16 @@ import { useState, useEffect } from "react";
 import { Modal, TextInput, Text } from "react-native";
 import { View } from "react-native-animatable";
 import CustomizableButton from "../../../../components/CustomizableButton/CustomizableButton";
-import SoundButton from "../../../../components/SoundButton/SoundButton";
 import { styles } from "./comida.styles";
-import eliminate from "../../../../assets/sounds/sfx-cancel.mp3";
+import evento_comic from "../../../../events/evento_comic";
+import { eliminarComida } from "../../../../services/comida.service";
+
+//sonidos
+import { playSound } from "../../../../utils/emitirSonido";
+import SoundButton from "../../../../components/SoundButton/SoundButton";
+import cancel from "../../../../assets/sounds/sfx-cancel.mp3";
+import wrong from "../../../../assets/sounds/sfx-error.mp3";
+import eliminate from "../../../../assets/sounds/sfx-eliminate.mp3";
 
 const Formulario_Comida_B = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
@@ -20,23 +27,38 @@ const Formulario_Comida_B = ({ visible, onClose }) => {
   }, [visible]);
 
   //Validación de datos
-  const verificarComida = () => {
+  const verificarComida = async () => {
     if (!nombre.trim()) {
+      playSound(wrong);
       alert("Por favor, completa todos los campos!!!!!");
       return;
     }
-    console.log("Comida eliminada con id :", nombre);
+
+    const resultado = await eliminarComida(nombre);
+
+    if (resultado.success) {
+      //exito al eliminar la comida
+      alert(`${resultado.message}`);
+      setNombre("");
+      playSound(eliminate);
+      onClose();
+    } else {
+      alert(`Error: ${resultado.message}`);
+      playSound(wrong);
+    }
   };
   return (
     <Modal visible={isVisible} animationType={"fade"}>
       <View style={styles.container}>
         <View style={{ marginTop: 50 }}>
-          <Text style={{ color: "white", marginLeft: 10 }}>ID del Plato</Text>
+          <Text style={{ color: "white", marginLeft: 10 }}>
+            Nombre del Plato
+          </Text>
           <TextInput
             style={styles.textInput}
             value={nombre}
             onChangeText={setNombre}
-            placeholder="id del Plato"
+            placeholder="Nombre del Plato"
             placeholderTextColor={"gray"}
           />
         </View>
@@ -51,7 +73,7 @@ const Formulario_Comida_B = ({ visible, onClose }) => {
           title="Cancelar"
           onPress={onClose}
           style={styles.button}
-          sfx={eliminate}
+          sfx={cancel}
         />
       </View>
     </Modal>

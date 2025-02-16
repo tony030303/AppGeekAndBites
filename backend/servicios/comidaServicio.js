@@ -1,7 +1,6 @@
 //se comunica con la BD que contiene los json
 //Crea funciones que llaman al modelo Comida (validaciones)
 
-const { isStringObject } = require("util/types");
 const comidaDB = require("../database/Comida");
 
 const getAllComidas = () => {
@@ -20,24 +19,24 @@ const createOneComida = (comidaData) => {
   return nuevaComida;
 };
 
-const deleteOneComida = (id) => {
+const deleteOneComida = (nombre) => {
   //verificar que
-  if (!id || isNaN(id)) {
-    //si no es un número o es un campo vacio
-    throw new Error("El id ingresado no es un valor númerico...");
+  if (!nombre.trim()) {
+    //si es un campo vacio
+    throw new Error("No ingreso el nombre del plato...");
   }
 
-  const unaComida = comidaDB.deleteOneComida(id);
+  const unaComida = comidaDB.deleteOneComida(nombre);
   return unaComida;
 };
 
-const updateOneComida = (id, body) => {
-  if (!comidaData.titulo || !isStringObject(comidaData.titulo)) {
-    //si no es un string o es un campo vacio
-    throw new Error("El titulo ingresado no es valido...");
+const updateOneComida = (nombre, body) => {
+  if (!nombre.trim()) {
+    //si es un campo vacio
+    throw new Error("No ingreso el nombre del plato...");
   }
 
-  const unaComida = comidaDB.updateOneComida(id, body);
+  const unaComida = comidaDB.updateOneComida(nombre, body);
   return unaComida;
 };
 

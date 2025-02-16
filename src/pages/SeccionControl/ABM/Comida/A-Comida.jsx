@@ -1,11 +1,17 @@
 import { useState, useEffect } from "react";
-import { Modal, TextInput, StyleSheet, Text } from "react-native";
+import { Modal, TextInput, Text } from "react-native";
 import ImageInput from "../../../../components/ImageInput/ImageInput";
 import { View } from "react-native-animatable";
 import CustomizableButton from "../../../../components/CustomizableButton/CustomizableButton";
-import SoundButton from "../../../../components/SoundButton/SoundButton";
 import { styles } from "./comida.styles";
+import { agregarComida } from "../../../../services/comida.service";
+
+//sonidos
+import { playSound } from "../../../../utils/emitirSonido";
+import SoundButton from "../../../../components/SoundButton/SoundButton";
 import eliminate from "../../../../assets/sounds/sfx-cancel.mp3";
+import added from "../../../../assets/sounds/sfx-add.mp3";
+import wrong from "../../../../assets/sounds/sfx-error.mp3";
 
 const Formulario_Comida_A = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
@@ -29,52 +35,26 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
     setCover(uri);
   };
 
-  //VALIDACION ->> VER DE MEJORARLO
-
   //Validación de datos y envío de datos al servidor
   const verificarComida = async () => {
     if (!nombre.trim() || !descri.trim()) {
+      playSound(wrong);
       alert("Por favor, completa todos los campos!");
       return;
     }
 
-    console.log(cover);
+    const resultado = await agregarComida(nombre, descri, cover); //llama a función que se encarga de hacer el puente backend - frontend
 
-    const formData = new FormData();
-    formData.append("accion", "comidas"); //se pasa en el formato para la busqueda de la carpeta en la que se guardara la imagen
-    formData.append("title", nombre);
-    formData.append("year", descri);
-    formData.append("cover", {
-      uri: cover,
-      type: "image/jpeg", // Ajusta el tipo según el formato
-      name: "comida_cover.jpg",
-    });
-
-    try {
-      const response = await fetch("http://192.168.0.20:5000/comidas", {
-        //ip alba: 192.168.0.20
-        //ip tony?: 192.168.0.218
-        //pongan su ip local, porque sino no funciona!!..
-        method: "POST",
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-        body: formData,
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("Comida agregada correctamente!");
-        setNombre("");
-        setDescrip("");
-        setCover(null);
-      } else {
-        alert(`Error: ${data.message}`);
-      }
-    } catch (error) {
-      console.error("Error al enviar los datos:", error);
-      alert("Hubo un problema al conectar con el servidor");
+    if (resultado.success) {
+      //exito en el resultado
+      alert(`${resultado.message}`);
+      setNombre("");
+      setDescrip("");
+      setCover(null);
+      playSound(added);
+      onClose();
+    } else {
+      alert(`Error: ${resultado.message}`);
     }
   };
 

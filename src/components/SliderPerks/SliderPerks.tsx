@@ -5,7 +5,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { PerksCard } from "../PerksCard/PerksCard";
 import perks from "../../jsons/perks"; //importamos el archivo de perks
-import styles from "../PerksCard/style-perks";
+import SliderPerksStyles from "./SliderPerks.styles";
 
 const SliderPerks = () => {
   const translateX = useSharedValue(0);
@@ -19,7 +19,7 @@ const SliderPerks = () => {
       onScroll={scrollHandler}
       scrollEventThrottle={16}
       horizontal
-      style={styles.container}
+      style={SliderPerksStyles.container}
     >
       {perks.map((lata, index) => {
         return (

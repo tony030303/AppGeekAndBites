@@ -30,8 +30,8 @@ const createOneComida = (req, res) => {
 //eliminar una comida existente
 
 const deleteOneComida = (req, res) => {
-  const comida_id = parseInt(req.params.id); //obtengo el id desde los parámetros del request
-  const comidaEliminada = comidaServicio.deleteOneComida(comida_id);
+  const comida_nombre = req.params.nombre; //obtengo el nombre desde los parámetros del request
+  const comidaEliminada = comidaServicio.deleteOneComida(comida_nombre);
   if (comidaEliminada == 1) {
     //si se eliminó, entonces mando OK
     res.status(200).send({ status: "Comida eliminada del menu" });
@@ -44,16 +44,22 @@ const deleteOneComida = (req, res) => {
 //modificar una comida existente
 
 const updateOneComida = (req, res) => {
-  const comida_id = parseInt(req.params.id); //obtengo el id desde los parámetros del request
+  const comida_nombre = req.params.nombre; //obtengo el nombre desde los parámetros del request
   const comida_body = req.body; //cuerpo de la solicitud
-  const comidaActualizada = comidaServicio.updateOneComida(
-    comida_id,
-    comida_body,
-  );
-  if (comidaActualizada === 0) {
-    res.status(404).send({ status: "Error" });
-  } else {
-    res.status(200).send({ status: "Comida actualizada" });
+  try {
+    const comidaActualizada = comidaServicio.updateOneComida(
+      comida_nombre,
+      comida_body
+    );
+    if (comidaActualizada === 1) {
+      return res.status(200).send({ status: "OK" });
+    } else {
+      return res
+        .status(404)
+        .send({ status: "Error", message: "Comida no encontrada" });
+    }
+  } catch (error) {
+    res.status(404).send({ status: "Error", message: error.message });
   }
 };
 module.exports = {

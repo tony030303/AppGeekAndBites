@@ -6,7 +6,7 @@ const path = require("path");
 
 router.get("/", comidasController.getAllComidas); //Obtener todos las comidas
 router.post("/", upload.single("cover"), comidasController.createOneComida); //crear un nueva carta de comida
-router.get("/:id", comidasController.deleteOneComida); //eliminar una comida (se usa GET para probar en la página web)
-router.put("/put/:id", comidasController.updateOneComida); //actualizar una comida
+router.get("/:nombre", comidasController.deleteOneComida); //eliminar una comida (se usa GET para probar en la página web)
+router.put("/:nombre", comidasController.updateOneComida); //actualizar una comida
 
 module.exports = router;

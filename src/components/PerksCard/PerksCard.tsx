@@ -6,7 +6,7 @@ import Animated, {
   interpolate,
   Extrapolation,
 } from "react-native-reanimated";
-import styles from "./style-perks";
+import perksCardstyles from "./PerksCard.styles";
 
 interface PerksProps {
   ruta: any;
@@ -26,7 +26,7 @@ const PerksCard: React.FC<PerksProps> = ({ index, ruta, translateX }) => {
       translateX.value,
       inputRange,
       [0, 1, 0],
-      Extrapolation.CLAMP, //En caso de extrapolarse
+      Extrapolation.CLAMP //En caso de extrapolarse
     );
 
     // const borderRadius = interpolate(
@@ -68,9 +68,9 @@ const PerksCard: React.FC<PerksProps> = ({ index, ruta, translateX }) => {
   // });
 
   return (
-    <View style={styles.pageContainer}>
-      <Animated.View style={[styles.perkContainer, rStyle]}>
-        <Animated.Image source={ruta} style={[rStyle, styles.image]} />
+    <View style={perksCardstyles.pageContainer}>
+      <Animated.View style={[perksCardstyles.perkContainer, rStyle]}>
+        <Animated.Image source={ruta} style={[rStyle, perksCardstyles.image]} />
       </Animated.View>
     </View>
   );

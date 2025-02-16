@@ -9,7 +9,7 @@ import Formulario_Comida_M from "./M-Comida";
 
 //Componentes
 import Ventana from "../../../../components/Ventana/Ventana";
-import Comidas from "../../../../jsons/itemsComidas.js";
+import Comidas from "../../../../jsons/comidas.json";
 
 const ABMComida = () => {
   const [isVisibleaA, setVisibleA] = useState(false);
