@@ -1,7 +1,7 @@
-const express = require("express");
+const express = require("express"); // Agrega esta línea
 const cors = require("cors"); //nos ayuda a que el server pueda ser accedido por el frontend
 const app = express();
-const PORT = 5000; //puerto
+const PORT = 5000;
 
 // Habilitación de CORS para permitir solicitudes de otros dominios (frontend distinto puerto)
 app.use(cors()); //habilita CORS
@@ -18,5 +18,5 @@ app.use("/comidas", routerComidas);
 
 // Iniciar servidor
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server en ejecución: http://localhost:${PORT}`);
+  console.log(`Server en ejecución: http://192.168.1.139:${PORT}`);
 });

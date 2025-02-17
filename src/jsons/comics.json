@@ -1,5 +1,22 @@
 [
   {
+    "id": 1,
+    "title": "X-Men Vol 1 #100",
+    "year": 1972,
+    "cover": "comic1.png"
+  },  {
+    "id": 2,
+    "title": "The Amazing SpiderMan #50",
+    "year": 1984,
+    "cover": "comic2.png"
+  },
+  {
+    "id": 3,
+    "title": "DEADPOOL",
+    "year": 2000,
+    "cover": "comic3.png"
+  },
+  {
     "id": 4,
     "title": "Amazing Fantasy 15",
     "year": 1962,
@@ -172,5 +189,11 @@
     "title": "Ola q hace",
     "year": "2002",
     "cover": "1739582311529.jpg"
+  },
+  {
+    "id": 31,
+    "title": "NuevoComic",
+    "year": "2010",
+    "cover": "1739822269301.jpg"
   }
 ]

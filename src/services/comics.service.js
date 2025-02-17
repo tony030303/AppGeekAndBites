@@ -1,3 +1,4 @@
+// import { start } from "repl";
 import API_URL from "../config";
 
 //conexión a API
@@ -89,6 +90,25 @@ export const modificarComic = async (id, year) => {
     }
   } catch (error) {
     console.error("Error al enviar los datos:", error);
+    return {
+      success: false,
+      message: "Hubo un problema al conectar con el servidor",
+    };
+  }
+};
+
+export const solicitarIntervaloComics = async (startIndex, endIndex) => {
+  try {
+    const response = await fetch(`${API_URL}/comics/${startIndex}/${endIndex}`);
+
+    const data = await response.json();
+    if (response.ok) {
+      return { success: true, data };
+    } else {
+      return { success: false, message: data.message };
+    }
+  } catch (error) {
+    console.error("Error al solicitar el intervalo de cómics:", error);
     return {
       success: false,
       message: "Hubo un problema al conectar con el servidor",

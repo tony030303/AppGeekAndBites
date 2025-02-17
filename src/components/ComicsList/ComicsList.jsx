@@ -1,55 +1,50 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { FlatList } from "react-native";
 import ComicCard from "../ComicCard/ComicCard";
-import comicsData from "../../jsons/comics.json";
 import { imageMap } from "../../assets/imageMap";
 import { style } from "./ComicsList.styles";
+import { solicitarIntervaloComics } from "../../services/comics.service";
+
 const PAGE_SIZE = 2;
 
 const ComicsList = () => {
-  console.log("cargado ComicList");
   const [comics, setComics] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
-  const isFetchingRef = useRef(isFetching); // Ref para el estado isFetching
-  const currentPageRef = useRef(1);
+  const isFetchingRef = useRef(isFetching);
+  const currentPageRef = useRef(0);
 
   // Sincroniza la ref con el estado real
   useEffect(() => {
     isFetchingRef.current = isFetching;
   }, [isFetching]);
 
-  // Función para refrescar los datos de comics
-  const refreshComics = useCallback(() => {
-    if (isFetchingRef.current) return; // Usa la ref, no el estado directamente
-
-    setIsFetching(true);
-
-    setComics((prevComics) => [...prevComics]);
-    setIsFetching(false);
-  }, []); // Sin dependencias: usamos refs para todo
-
   // Función memoizada para cargar cómics
-  const loadMoreComics = useCallback(() => {
-    if (isFetchingRef.current) return; // Usa la ref, no el estado directamente
-
+  const loadMoreComics = useCallback(async () => {
+    if (isFetchingRef.current) return;
     setIsFetching(true);
-    const start = (currentPageRef.current - 1) * PAGE_SIZE;
-    const end = currentPageRef.current * PAGE_SIZE;
+    //calcular indices inicial y final
+    const start = currentPageRef.current * PAGE_SIZE + currentPageRef.current;
+    const end = start + PAGE_SIZE;
 
-    const newComics = comicsData.slice(start, end).map((comic) => ({
+    //extraer json seccionado desde start hasta end inclusive
+    const response = await solicitarIntervaloComics(start, end);
+
+    //conversion e insercion de comic
+    const newComics = response.data.data.map((comic) => ({
       ...comic,
       cover: imageMap[comic.cover],
     }));
 
     setComics((prevComics) => [...prevComics, ...newComics]);
-    currentPageRef.current += 1;
-    setIsFetching(false);
-  }, []); // Sin dependencias: usamos refs para todo
+    currentPageRef.current += 1; // Aumenta la página correctamente
 
-  // Carga la primera página al montar
-  useEffect(() => {
-    loadMoreComics();
-  }, [loadMoreComics]); // Ahora loadMoreComyarics es estable
+    setIsFetching(false);
+  }, []);
+
+  // // Carga la primera página al montar (FUE RETIRADO PORQUE FLATLIST LLAMA AUTOMATICAMENTE A loadmorecomics!!!)
+  // useEffect(() => {
+  //   loadMoreComics();
+  // }, [loadMoreComics]); // Solo se ejecuta si initialLoadDone es false
 
   return (
     <FlatList
@@ -60,7 +55,7 @@ const ComicsList = () => {
       )}
       keyExtractor={(item, index) => `${item.id}-${index}`}
       contentContainerStyle={style.list}
-      onEndReached={loadMoreComics}
+      onEndReached={loadMoreComics} // Solo permite onEndReached después de la carga inicial
       onEndReachedThreshold={0.1}
     />
   );

@@ -3,11 +3,15 @@ import { Modal, TextInput, Text } from "react-native";
 import ImageInput from "../../../../components/ImageInput/ImageInput";
 import { View } from "react-native-animatable";
 import CustomizableButton from "../../../../components/CustomizableButton/CustomizableButton";
-import SoundButton from "../../../../components/SoundButton/SoundButton";
 import { styles } from "./comida.styles";
-import eliminate from "../../../../assets/sounds/sfx-cancel.mp3";
 import { modificarComida } from "../../../../services/comida.service";
-import added from "../../../../assets/sounds/sfx-add.mp3";
+
+//sonidos
+import { playSound } from "../../../../utils/emitirSonido";
+import SoundButton from "../../../../components/SoundButton/SoundButton";
+import eliminate from "../../../../assets/sounds/sfx-cancel.mp3";
+import modified from "../../../../assets/sounds/sfx-modified.mp3";
+import wrong from "../../../../assets/sounds/sfx-error.mp3";
 
 const Formulario_Comida_A = ({ visible, onClose }) => {
   const [isVisible, setIsVisible] = useState(visible);
@@ -39,7 +43,7 @@ const Formulario_Comida_A = ({ visible, onClose }) => {
       alert(`${resultado.message}`);
       setNombre("");
       setDescrip("");
-      playSound(added);
+      playSound(modified);
       onClose();
     } else {
       alert(`Error: ${resultado.message}`);

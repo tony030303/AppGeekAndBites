@@ -32,6 +32,18 @@ const getAllComics = () => {
   return file;
 };
 
+//obtener un intervalo de comics
+const getComicsByRange = (startIndex, endIndex) => {
+  const comics = readData();
+
+  // Fijacion de Valores para prevenir errores
+  startIndex = Math.max(startIndex, 0);
+  endIndex = Math.min(Math.max(startIndex, endIndex), comics.length - 1);
+
+  if (endIndex === startIndex) return comics[startIndex];
+  return comics.slice(startIndex, endIndex + 1);
+};
+
 //crear un cómic
 const createOneComic = (body) => {
   const file = readData();
@@ -113,4 +125,5 @@ module.exports = {
   createOneComic,
   deleteOneComic,
   updateOneComic,
+  getComicsByRange,
 };

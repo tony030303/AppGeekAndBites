@@ -52,9 +52,14 @@ const updateOneComic = (id, body) => {
   return unComic;
 };
 
+const getIntervalComics = (start = 0, end) => {
+  return comicDB.getComicsByRange(start, end);
+};
+
 module.exports = {
   getAllComics,
   createOneComic,
   deleteOneComic,
   updateOneComic,
+  getIntervalComics,
 };

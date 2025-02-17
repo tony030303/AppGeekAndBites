@@ -57,9 +57,21 @@ const updateOneComic = (req, res) => {
     res.status(404).send({ status: "Error", message: error.message });
   }
 };
+
+const getIntervalComics = (req, res) => {
+  const startIndex = parseInt(req.params.start);
+  const endIndex = parseInt(req.params.end);
+  const intervalosComic = comicsServicio.getIntervalComics(
+    startIndex,
+    endIndex,
+  );
+  return res.status(200).json({ status: "OK", data: intervalosComic });
+};
+
 module.exports = {
   getAllComics,
   createOneComic,
   deleteOneComic,
   updateOneComic,
+  getIntervalComics,
 };
