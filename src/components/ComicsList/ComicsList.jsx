@@ -18,6 +18,16 @@ const ComicsList = () => {
     isFetchingRef.current = isFetching;
   }, [isFetching]);
 
+  // Función para refrescar los datos de comics
+  const refreshComics = useCallback(() => {
+    if (isFetchingRef.current) return; // Usa la ref, no el estado directamente
+
+    setIsFetching(true);
+
+    setComics((prevComics) => [...prevComics]);
+    setIsFetching(false);
+  }, []); // Sin dependencias: usamos refs para todo
+
   // Función memoizada para cargar cómics
   const loadMoreComics = useCallback(() => {
     if (isFetchingRef.current) return; // Usa la ref, no el estado directamente
@@ -44,6 +54,7 @@ const ComicsList = () => {
   return (
     <FlatList
       data={comics}
+      extraData={comics}
       renderItem={({ item }) => (
         <ComicCard title={item.title} year={item.year} cover={item.cover} />
       )}
