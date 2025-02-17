@@ -14,8 +14,8 @@ export default function Contactos() {
     <>
       <ImageBackground
         source={wallpaper}
-        style={style.background}
-        contentFit="cover"
+        style={style.background} 
+        contentFit="cover" // el fondo cubre todo el área disponible sin deformarse
       >
         <ContactList />
       </ImageBackground>

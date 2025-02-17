@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native";
 const style = StyleSheet.create({
   background: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    flex: 1, //ocupa todo el espacio disponible
+    justifyContent: "center", //centra el contenido verticalmente
+    alignItems: "center", //centra el contenido horizontalmente
   },
   scrollContainer: {
     flexGrow: 1,

@@ -9,12 +9,13 @@ const ContactosList = () => {
     //contenedor de las tarjetas de contactos.
     <View style={styles.container}>
       <FlatList
-        data={itemsContactos}
-        keyExtractor={(_, index) => String(index)}
-        renderItem={({ item }) => <FlipCard item={item} mostrar={false} />}
-        showsVerticalScrollIndicator={false}
-        horizontal={false}
-        ListHeaderComponent={<Text style={styles.heading}>Contactanos!</Text>}
+        //armo la lista con las tarjetas de contactos
+        data={itemsContactos} 
+        keyExtractor={(_, index) => String(index)} //índice del objeto como clave
+        renderItem={({ item }) => <FlipCard item={item} mostrar={false} />} //para cada tarjeta de contacto
+        showsVerticalScrollIndicator={false} //barra de desplazamiento ocultada
+        horizontal={false} 
+        ListHeaderComponent={<Text style={styles.heading}>Contactanos!</Text>} //encabezado
       />
     </View>
   );

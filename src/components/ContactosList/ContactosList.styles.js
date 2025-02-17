@@ -11,9 +11,9 @@ export const styles = StyleSheet.create({
   },
 
   container: {
-    flex: 1,
-    padding: 20,
+    flex: 1, //ocupa todo el espacio disponible
+    padding: 20, //margen
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "center", //Centrar el contenido verticalmente
   },
 });
