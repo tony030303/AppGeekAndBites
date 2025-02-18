@@ -48,7 +48,7 @@ const createOneComida = (body) => {
   } else {
     //genero la nueva comida
     const nuevaComida = {
-      index: file.length + 1,
+      index: obtenerNuevoId(file),
       title: body.title,
       backgroundImage: body.cover,
       backContent: body.year,
@@ -66,6 +66,24 @@ const createOneComida = (body) => {
     return nuevaComida;
   }
 };
+
+//funcion para obtener el id(evita repetidos)
+function obtenerNuevoId(items) {
+  // sacamos los IDs y los ordenamos de menor a mayor.
+  const ids = items.map((c) => c.index).sort((a, b) => a - b);
+
+  // empiezo con el ID mínimo posible.
+  let nextId = 1;
+  let contador = 0;
+  // recorro los IDs ordenados.
+  while (contador < ids.length && ids[contador] == nextId) {
+    nextId++; //avanzo al siguiente elem
+    contador++; //avanzo en la iteracion
+  }
+  // Una vez se haya encontrado el número, lo retorno.
+  return nextId;
+};
+
 
 //función para actualizar ImageMap
 const actualizarImageMap = (coverName) => {

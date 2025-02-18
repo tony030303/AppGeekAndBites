@@ -50,7 +50,7 @@ const createOneComic = (body) => {
 
   //genero el nuevo cómic
   const nuevoComic = {
-    id: file.length + 1,
+    id: obtenerNuevoId(file) /*file.length + 1, */,
     ...body,
   };
 
@@ -85,6 +85,23 @@ const actualizarImageMap = (coverName) => {
   }
 };
 
+//funcion para obtener el id(evita repetidos)
+function obtenerNuevoId(items) {
+  // sacamos los IDs y los ordenamos de menor a mayor.
+  const ids = items.map((c) => c.id).sort((a, b) => a - b);
+
+  // empiezo con el ID mínimo posible.
+  let nextId = 1;
+  let contador = 0;
+  // recorro los IDs ordenados.
+  while (contador < ids.length && ids[contador] == nextId) {
+    nextId++; //avanzo al siguiente elem
+    contador++; //avanzo en la iteracion
+  }
+  // Una vez se haya encontrado el número, lo retorno.
+  return nextId;
+};
+
 //eliminar un cómic
 
 const deleteOneComic = (id) => {
@@ -96,9 +113,28 @@ const deleteOneComic = (id) => {
     //si esta en una pos válida
     comics.splice(pos, 1); //borra al cómic de esa pos
     escribirDatos(comics);
+
+    eliminarElementoImageMap(unComic.cover);
     exito = 1; //lo pudo hacer correctamente
   }
   return exito;
+};
+
+//función para eliminar la imagen asociada a una comida en ImageMap
+const eliminarElementoImageMap = (coverName) => {
+  try {
+    let imageMapContent = fs.readFileSync(imageMapPath, "utf8"); //lectura del archivo en la ruta
+
+    // construyo la entrada que deseo eliminar
+    const entrada = `\n  "${coverName}": require("./comics/${coverName}"),`;
+
+    imageMapContent = imageMapContent.replace(`${entrada}`, "");
+
+    fs.writeFileSync(imageMapPath, imageMapContent, "utf8"); //actualizo el archivo
+    console.log(`Se ha eliminado en imageMap.js : ${coverName}`);
+  } catch (error) {
+    console.error("Error eliminando en imageMap.js", error);
+  }
 };
 
 const updateOneComic = (id, body) => {
