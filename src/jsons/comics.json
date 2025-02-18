@@ -4,7 +4,8 @@
     "title": "X-Men Vol 1 #100",
     "year": 1972,
     "cover": "comic1.png"
-  },  {
+  },
+  {
     "id": 2,
     "title": "The Amazing SpiderMan #50",
     "year": 1984,
@@ -177,23 +178,5 @@
     "title": "Avengers: Infinity",
     "year": 2014,
     "cover": "comic30.png"
-  },
-  {
-    "id": 31,
-    "title": "Ustedes",
-    "year": 2002,
-    "cover": "1739573952337.jpg"
-  },
-  {
-    "id": 31,
-    "title": "Ola q hace",
-    "year": "2002",
-    "cover": "1739582311529.jpg"
-  },
-  {
-    "id": 31,
-    "title": "NuevoComic",
-    "year": "2010",
-    "cover": "1739822269301.jpg"
   }
 ]
