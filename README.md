@@ -1,2 +1,2 @@
 # AppGeekAndBites
-Solo guardar el src
+Aplicación Web con React-Native
