@@ -1,2 +1,2 @@
 # AppGeekAndBites
-Aplicación Web con React-Native
+Aplicación móvil con React-Native
